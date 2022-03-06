@@ -17,4 +17,6 @@
 #' @importFrom purrr map_dfr
 #' @importFrom purrr map_int
 #' @importFrom purrr quietly
+#' @importFrom stats setNames
+#' @importFrom utils capture.output head
 "_PACKAGE"
