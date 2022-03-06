@@ -20,7 +20,8 @@ Imports:
     magrittr,
     rlang (>= 0.4.3),
     tibble (>= 3.0.0),
-    tidyselect (>= 0.4.3)
+    tidyselect (>= 0.4.3),
+    purrr
 RoxygenNote: 7.1.1
 Suggests: 
     testthat (>= 3.0.0)
