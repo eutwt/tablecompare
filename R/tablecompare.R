@@ -2,7 +2,7 @@
 #'
 #' @import data.table
 #' @import rlang
-#' @import tidyselect
+#' @importFrom tidyselect eval_select
 #' @importFrom glue glue
 #' @importFrom glue glue_collapse
 #' @importFrom glue glue_data
