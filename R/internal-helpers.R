@@ -43,7 +43,7 @@ as_colname <- function(x, maxlen = 8) {
 }
 
 name_select <- function(quo, .data) {
-  names(tidyselect::eval_select(quo, .data))
+  names(eval_select(quo, .data))
 }
 
 seij <- function(.data, i, j) {
