@@ -89,12 +89,18 @@ compare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
       cols$unmatched <- cols$unmatched[, .(table, column, class)]
     }
 
-    value_diffs <- value_diffs[sapply(value_diffs, nrow) > 0]
+    cols$compare[, value_diffs := value_diffs[column]]
+    setkey(cols$compare, column)
 
-    list(table_summ = table_summ,
-         cols = cols,
-         unmatched_rows = .data$unmatched,
-         value_diffs = value_diffs)
+    structure(
+      list(tables = table_summ,
+           by = cols$by,
+           summ = cols$compare,
+           unmatched_cols = cols$unmatched,
+           unmatched_rows = .data$unmatched),
+      class = 'tbcmp_compare')
+}
+
 }
 
 # Helpers ---------
