@@ -30,7 +30,7 @@ count_values <- function(.data, col, by, setkey = FALSE) {
       as.data.table %>%
       unique %>%
       .[, .(n_vals = .N), by = by_names] %>%
-      .[n_vals > 1] %>%
+      .[n_vals > 1]
   if (setkey)
     setkeyv(out, by_names)[]
   else
