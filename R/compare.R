@@ -101,6 +101,12 @@ compare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
       class = 'tbcmp_compare')
 }
 
+#' @export
+value_diffs <- function(comparison) {
+  if (!inherits(comparison, 'tbcmp_compare')) {
+    abort("`comparison` must be output of `tablecompare::compare()`")
+  }
+  comparison$summ[, value_diffs[[1]], keyby = column]
 }
 
 # Helpers ---------
