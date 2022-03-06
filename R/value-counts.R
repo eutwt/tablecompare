@@ -86,7 +86,6 @@ assert_unique <- function(.data, by, data_chr, by_chr) {
   msg <- glue("Input `{data_chr}` is not unique by `{by_chr}`.")
   msg2 <- glue("Use `count_dupes()` to see all duplicates.")
 
-  by_idx <- tidyselect::eval_select(enquo(by), .data)
   first_dupe <-
     head(count_dupes(.data, {{ by }}), 1) %>%
       setcolorder('n_rows', before = 1)
