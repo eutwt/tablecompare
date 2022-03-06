@@ -24,6 +24,14 @@ assert_unique(.data, by, data_chr, by_chr)
 \item{by}{tidy-select. Columns in `.data`}
 
 \item{setkey}{Logical. Should the output be keyed by `by` cols?}
+
+\item{data_chr}{character. You can use this argument to manually specify
+the name of `data` shown in error messages. Useful when using these functions
+as checks inside other functions.}
+
+\item{by_chr}{character. You can use this argument to manually specify
+the name of `by` shown in error messages. Useful when using these functions
+as checks inside other functions.}
 }
 \description{
 `count_values()` returns groups with non-unique values, along with the number

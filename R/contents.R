@@ -1,5 +1,8 @@
 #' Show the contents of a data frame
 #' @param .data A data frame
+#' @param cat_nrow Logical. If true, the number of rows is `cat`ed out
+#' @param big_mark Passed to the `big.mark` argument of `format` when formatting
+#' the number of rows
 
 #' @rdname contents
 #' @export

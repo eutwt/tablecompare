@@ -9,7 +9,7 @@
 #' @param coerce Logical. If False only columns with the same class are compared.
 #' @param comparison The output of a `tablecompare::tablecompare()` call.
 
-#' @rdname tablecompare
+#' @rdname fun_tablecompare
 #' @export
 tablecompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
                     coerce = TRUE) {
@@ -101,7 +101,7 @@ tablecompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out 
       class = 'tbcmp_compare')
 }
 
-#' @rdname tablecompare
+#' @rdname fun_tablecompare
 #' @export
 value_diffs <- function(comparison) {
   if (!inherits(comparison, 'tbcmp_compare')) {

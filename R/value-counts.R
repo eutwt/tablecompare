@@ -16,6 +16,12 @@
 #' @param col tidy-select. A single column in `.data`
 #' @param by tidy-select. Columns in `.data`
 #' @param setkey Logical. Should the output be keyed by `by` cols?
+#' @param data_chr character. You can use this argument to manually specify
+#' the name of `data` shown in error messages. Useful when using these functions
+#' as checks inside other functions.
+#' @param by_chr character. You can use this argument to manually specify
+#' the name of `by` shown in error messages. Useful when using these functions
+#' as checks inside other functions.
 
 #' @rdname value-counts
 #' @export

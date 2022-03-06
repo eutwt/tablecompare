@@ -8,6 +8,11 @@ contents(.data, cat_nrow = TRUE, big_mark = ",")
 }
 \arguments{
 \item{.data}{A data frame}
+
+\item{cat_nrow}{Logical. If true, the number of rows is `cat`ed out}
+
+\item{big_mark}{Passed to the `big.mark` argument of `format` when formatting
+the number of rows}
 }
 \description{
 Show the contents of a data frame
