@@ -7,11 +7,11 @@
 #' @param ncol_by_out Number of by-columns to include in `col_diffs` and
 #' `unmatched_rows` output
 #' @param coerce Logical. If False only columns with the same class are compared.
+#' @param comparison The output of a `tablecompare::tablecompare()` call.
 
-#' @rdname compare
+#' @rdname tablecompare
 #' @export
-#'
-compare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
+tablecompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
                     coerce = TRUE) {
   if (missing(by)) {
     abort("Argument `by` cannot be missing")
@@ -101,6 +101,7 @@ compare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
       class = 'tbcmp_compare')
 }
 
+#' @rdname tablecompare
 #' @export
 value_diffs <- function(comparison) {
   if (!inherits(comparison, 'tbcmp_compare')) {

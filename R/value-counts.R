@@ -15,9 +15,9 @@
 #' @param .data A data frame or data frame extension (e.g. a tibble)
 #' @param col tidy-select. A single column in `.data`
 #' @param by tidy-select. Columns in `.data`
-#'
-#' @rdname value-counts
+#' @param setkey Logical. Should the output be keyed by `by` cols?
 
+#' @rdname value-counts
 #' @export
 count_values <- function(.data, col, by, setkey = FALSE) {
   if (missing(col) || missing(by)) {
@@ -37,6 +37,7 @@ count_values <- function(.data, col, by, setkey = FALSE) {
     out[]
 }
 
+#' @rdname value-counts
 #' @export
 assert_single_value <- function(.data, col, by) {
   if (missing(col) || missing(by)) {
@@ -54,6 +55,7 @@ assert_single_value <- function(.data, col, by) {
   invisible()
 }
 
+#' @rdname value-counts
 #' @export
 count_dupes <- function(.data, by, setkey = FALSE) {
   if (missing(by)) {
@@ -69,6 +71,7 @@ count_dupes <- function(.data, by, setkey = FALSE) {
   counts[n_rows > 1]
 }
 
+#' @rdname value-counts
 #' @export
 assert_unique <- function(.data, by, data_chr, by_chr) {
   if (missing(data_chr)) {
