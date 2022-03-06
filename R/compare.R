@@ -2,11 +2,11 @@
 #' @param .data_a A data frame
 #' @param .data_b A data frame
 #' @param by tidy-select selection of columns
-#' @param allow_bothNA Lobical. If TRUE a missing value in both data frames is
+#' @param allow_bothNA Logical. If TRUE a missing value in both data frames is
 #' considered as equal
 #' @param ncol_by_out Number of by-columns to include in `col_diffs` and
 #' `unmatched_rows` output
-#' @param coerce Logical. If False onlyy columns with the same calss are compared.
+#' @param coerce Logical. If False only columns with the same class are compared.
 
 #' @rdname compare
 #' @export
