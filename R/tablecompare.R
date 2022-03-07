@@ -19,4 +19,5 @@
 #' @importFrom purrr quietly
 #' @importFrom stats setNames
 #' @importFrom utils capture.output head
+#' @importFrom magrittr %>%
 "_PACKAGE"
