@@ -27,7 +27,7 @@ arg_to_char <- function(arg, maxlen = 10, shorten = TRUE) {
   }
   arg_name <- deparse(substitute(arg))
   char <-
-    match.call(def = sys.function(-1), call = sys.call(-1)) %>%
+    match.call(definition = sys.function(-1), call = sys.call(-1)) %>%
       as.list() %>%
       '[['(arg_name) %>%
       deparse
