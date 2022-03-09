@@ -22,6 +22,58 @@
 #' @param by_chr character. You can use this argument to manually specify
 #' the name of `by` shown in error messages. Useful when using these functions
 #' as checks inside other functions.
+#'
+#' @examples
+#'
+#' df <- read.table(text = '
+#' x y z
+#' 1 6 1
+#' 2 6 2
+#' 3 7 3
+#' 3 7 4
+#' 4 3 5
+#' 4 3 6
+#' ', header = T)
+#'
+#' assert_unique(df, c(x, y))
+#' #> Error in `assert_unique()`:
+#' #> ! Input `df` is not unique by `c(x, y)`.
+#' #> • First duplicate:
+#' #> •  n_rows     x     y
+#' #> •   <int> <int> <int>
+#' #> •       2     3     7
+#' #> • Use `count_dupes()` to see all duplicates.
+#'
+#' count_dupes(df, c(x, y))
+#' #>        x     y n_rows
+#' #>    <int> <int>  <int>
+#' #> 1:     3     7      2
+#' #> 2:     4     3      2
+#'
+#' df <- read.table(text = '
+#' x y z
+#' a 1 3
+#' a 1 3
+#' a 2 4
+#' a 2 4
+#' a 2 2
+#' b 1 1
+#' b 1 2
+#' ', header = T)
+#'
+#' assert_single_value(df, z, by = c(x, y))
+#' #> Error in `assert_single_value()`:
+#' #> ! Column `z` is not unique by `c(x, y)`.
+#' #> •       x     y n_vals
+#' #> •  <char> <int>  <int>
+#' #> •       a     2      2
+#' #> • Use `count_values()` to see all groups with multiple values.
+#'
+#' count_values(df, z, by = c(x, y))
+#' #>         x     y n_vals
+#' #>    <char> <int>  <int>
+#' #> 1:      a     2      2
+#' #> 2:      b     1      2
 
 #' @rdname value-counts
 #' @export
