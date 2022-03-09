@@ -3,6 +3,7 @@
 #' @description
 #' `count_dupes()` returns values of `by` variables for which the `.data` has
 #' multiple rows, along with the number of rows for each combination of values.
+#' delete this line
 #'
 #' `assert_unique()` throws an error if there are multiple rows for any
 #' combination of `by` variable values
