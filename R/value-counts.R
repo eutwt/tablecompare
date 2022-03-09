@@ -1,18 +1,18 @@
 #' Check for duplicate values
 #' todo: add return value description
 #'
-#'
-#' `count_values()` returns groups with non-unique values, along with the number
-#' of unique values in each group
-#' `assert_single_value()` throws an error if any groups with multiple values
-#' exist
-#'
-#' `count_dupes()` returns values of `by` variables for whih the `.data` has
-#' multiple rows, along with the number of rows for each combination of values
 #' `assert_unique()` throws an error if there are multiple rows for any
 #' combination of `by` variable values
+#' `count_dupes()` returns values of `by` variables for which the `.data` has
+#' multiple rows, along with the number of rows for each combination of values
 #'
-#' @param .data A data frame or data frame extension (e.g. a tibble)
+#' `assert_single_value()` throws an error if there are multiple unique rows for
+#' any combination of `by` variable values, only considering columns in `col`
+#' `count_values()` returns values of `by` variables for which the `.data` has
+#' multiple unique rows, along with the number of unique rows for each
+#' combination of values, only considering columns in `col`
+#'
+#' @param .data A data frame or data table
 #' @param col tidy-select. A single column in `.data`
 #' @param by tidy-select. Columns in `.data`
 #' @param setkey Logical. Should the output be keyed by `by` cols?
