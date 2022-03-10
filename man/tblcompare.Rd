@@ -3,7 +3,7 @@
 \name{tblcompare}
 \alias{tblcompare}
 \alias{value_diffs}
-\title{Show the contents of a data frame}
+\title{Compare two data frames}
 \usage{
 tblcompare(
   .data_a,
@@ -34,5 +34,5 @@ considered as equal}
 \item{comparison}{The output of a `tablecompare::tablecompare()` call.}
 }
 \description{
-Show the contents of a data frame
+Compare two data frames
 }

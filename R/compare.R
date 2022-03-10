@@ -1,4 +1,4 @@
-#' Show the contents of a data frame
+#' Compare two data frames
 #' @param .data_a A data frame
 #' @param .data_b A data frame
 #' @param by tidy-select selection of columns
