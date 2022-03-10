@@ -17,3 +17,14 @@ the number of rows}
 \description{
 Show the contents of a data frame
 }
+\examples{
+\dontrun{
+contents(ToothGrowth)
+#> Number of Rows: 60
+#>    column   class
+#>    <char>  <char>
+#> 1:   supp  factor
+#> 2:   dose numeric
+#> 3:    len numeric
+}
+}

@@ -3,6 +3,16 @@
 #' @param cat_nrow Logical. If true, the number of rows is `cat`ed out
 #' @param big_mark Passed to the `big.mark` argument of `format` when formatting
 #' the number of rows
+#' @examples
+#' \dontrun{
+#' contents(ToothGrowth)
+#' #> Number of Rows: 60
+#' #>    column   class
+#' #>    <char>  <char>
+#' #> 1:   supp  factor
+#' #> 2:   dose numeric
+#' #> 3:    len numeric
+#' }
 
 #' @rdname contents
 #' @export
