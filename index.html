@@ -52,9 +52,82 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="tablecompare">tablecompare<a class="anchor" aria-label="anchor" href="#tablecompare"></a>
+</h1></div>
+<p>Compare two tables by a set of ID variables.</p>
+<p>Below are two slightly modified versions of <code>mtcars</code></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://eutwt.github.io/tablecompare/">tablecompare</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span>
+
+<span class="va">df_a</span> <span class="op">&lt;-</span>
+  <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span>keep.rownames <span class="op">=</span> <span class="st">"car"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="va">.</span><span class="op">[</span>, <span class="st">':='</span><span class="op">(</span>disp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html" class="external-link">replace</a></span><span class="op">(</span><span class="va">disp</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, <span class="va">disp</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>,
+             cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html" class="external-link">replace</a></span><span class="op">(</span><span class="va">cyl</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span>,
+             extracol_a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="va">.</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">[</span>, <span class="va">car</span> <span class="op">:=</span> <span class="st">"extra_a"</span><span class="op">]</span><span class="op">)</span>
+
+<span class="va">df_b</span> <span class="op">&lt;-</span>
+  <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span>keep.rownames <span class="op">=</span> <span class="st">"car"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="va">.</span><span class="op">[</span>, <span class="st">':='</span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html" class="external-link">replace</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, <span class="va">mpg</span><span class="op">[</span><span class="fl">7</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span>,
+             cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html" class="external-link">replace</a></span><span class="op">(</span><span class="va">cyl</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span>,
+             wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="va">.</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">[</span>, <span class="va">car</span> <span class="op">:=</span> <span class="st">"extra_b"</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<p>With tablecompare, you should be able to easily see what rows have different values, what rows are only in one table, and what columns are only in one table</p>
+<pre class="{r}"><code><span class="va">comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tblcompare.html">tblcompare</a></span><span class="op">(</span><span class="va">df_a</span>, <span class="va">df_b</span>, by <span class="op">=</span> <span class="va">car</span><span class="op">)</span>
+<span class="va">comp</span>
+<span class="co">#&gt; $tables</span>
+<span class="co">#&gt;    table name ncol nrow</span>
+<span class="co">#&gt; 1:     a df_a   13   11</span>
+<span class="co">#&gt; 2:     b df_b   12   12</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $by</span>
+<span class="co">#&gt;    column   class_a   class_b</span>
+<span class="co">#&gt; 1:    car character character</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $summ</span>
+<span class="co">#&gt;     column n_diffs class_a   class_b       value_diffs</span>
+<span class="co">#&gt;  1:     am       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt;  2:   carb       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt;  3:    cyl       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt;  4:   disp       2 numeric   numeric &lt;data.table[2x5]&gt;</span>
+<span class="co">#&gt;  5:   drat       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt;  6:   gear       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt;  7:     hp       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt;  8:    mpg       2 numeric   numeric &lt;data.table[2x5]&gt;</span>
+<span class="co">#&gt;  9:   qsec       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt; 10:     vs       0 numeric   numeric &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt; 11:     wt       0 numeric character &lt;data.table[0x5]&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $unmatched_cols</span>
+<span class="co">#&gt;    table     column   class</span>
+<span class="co">#&gt; 1:     a extracol_a numeric</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $unmatched_rows</span>
+<span class="co">#&gt;    table  i        car</span>
+<span class="co">#&gt; 1:     a  1  Mazda RX4</span>
+<span class="co">#&gt; 2:     a 11    extra_a</span>
+<span class="co">#&gt; 3:     b 10  Merc 280C</span>
+<span class="co">#&gt; 4:     b 11 Merc 450SE</span>
+<span class="co">#&gt; 5:     b 12    extra_b</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; attr(,"class")</span>
+<span class="co">#&gt; [1] "tbcmp_compare"</span></code></pre>
+<p>You can use <code>value_diffs(&lt;tblcomp&gt;)</code> to see the specific values that are different.</p>
+<pre class="{r}"><code><span class="fu"><a href="reference/tblcompare.html">value_diffs</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span>
+<span class="co">#&gt;    column i_a i_b val_a val_b            car</span>
+<span class="co">#&gt; 1:   disp   3   2 109.0 108.0     Datsun 710</span>
+<span class="co">#&gt; 2:   disp   4   3 259.0 258.0 Hornet 4 Drive</span>
+<span class="co">#&gt; 3:    mpg   7   6  14.3  16.3     Duster 360</span>
+<span class="co">#&gt; 4:    mpg   8   7  24.4  26.4      Merc 240D</span></code></pre>
+<p><sup>Created on 2022-03-11 by the <a href="https://reprex.tidyverse.org" class="external-link">reprex package</a> (v2.0.1)</sup></p>
+</div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
