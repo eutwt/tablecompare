@@ -1,3 +1,4 @@
+#' @description Compare two tables
 #' @keywords internal
 #'
 #' @import data.table

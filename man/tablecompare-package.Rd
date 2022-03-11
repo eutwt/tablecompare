@@ -6,8 +6,7 @@
 \alias{tablecompare-package}
 \title{tablecompare: Compare Data Frames}
 \description{
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Compare two tables
 }
 \seealso{
 Useful links:
