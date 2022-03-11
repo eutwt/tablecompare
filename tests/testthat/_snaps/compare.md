@@ -52,11 +52,11 @@
 ---
 
     Code
-      value_diffs(comp)
+      all_value_diffs(comp)
     Output
          column i_a i_b val_a val_b            car
-      1:   disp   3   2 109.0 108.0     Datsun 710
-      2:   disp   4   3 259.0 258.0 Hornet 4 Drive
+      1:   disp   3   2   109   108     Datsun 710
+      2:   disp   4   3   259   258 Hornet 4 Drive
       3:    mpg   7   6  14.3  16.3     Duster 360
       4:    mpg   8   7  24.4  26.4      Merc 240D
 
@@ -106,12 +106,12 @@
 ---
 
     Code
-      value_diffs(comp)
+      all_value_diffs(comp)
     Output
          column i_a i_b val_a val_b            car
-      1:    cyl   3   2    NA    NA     Datsun 710
-      2:   disp   3   2 109.0 108.0     Datsun 710
-      3:   disp   4   3 259.0 258.0 Hornet 4 Drive
+      1:    cyl   3   2  <NA>  <NA>     Datsun 710
+      2:   disp   3   2   109   108     Datsun 710
+      3:   disp   4   3   259   258 Hornet 4 Drive
       4:    mpg   7   6  14.3  16.3     Duster 360
       5:    mpg   8   7  24.4  26.4      Merc 240D
 
@@ -161,11 +161,11 @@
 ---
 
     Code
-      value_diffs(comp)
+      all_value_diffs(comp)
     Output
          column i_a i_b val_a val_b            car
-      1:   disp   3   2 109.0 108.0     Datsun 710
-      2:   disp   4   3 259.0 258.0 Hornet 4 Drive
+      1:   disp   3   2   109   108     Datsun 710
+      2:   disp   4   3   259   258 Hornet 4 Drive
       3:    mpg   7   6  14.3  16.3     Duster 360
       4:    mpg   8   7  24.4  26.4      Merc 240D
 

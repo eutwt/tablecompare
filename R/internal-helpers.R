@@ -77,3 +77,7 @@ intercept <- function(fun) {
     list(res = res, warn = warn, err = err)
   }
 }
+
+simulate_df <- function(vars) {
+  as.data.frame(rep_named(vars, list(logical())))
+}

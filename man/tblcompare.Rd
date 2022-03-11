@@ -3,6 +3,7 @@
 \name{tblcompare}
 \alias{tblcompare}
 \alias{value_diffs}
+\alias{all_value_diffs}
 \title{Compare two data frames}
 \usage{
 tblcompare(
@@ -14,7 +15,9 @@ tblcompare(
   coerce = TRUE
 )
 
-value_diffs(comparison)
+value_diffs(comparison, col)
+
+all_value_diffs(comparison)
 }
 \arguments{
 \item{.data_a}{A data frame}

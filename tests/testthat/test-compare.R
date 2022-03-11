@@ -26,17 +26,17 @@ df_b <-
 test_that("value_diffs example", {
   comp <- tblcompare(df_a, df_b, by = car)
   expect_snapshot(comp)
-  expect_snapshot(value_diffs(comp))
+  expect_snapshot(all_value_diffs(comp))
 })
 
 test_that("value_diffs example allow_bothNA = FALSE", {
   comp <- tblcompare(df_a, df_b, by = car, allow_bothNA = FALSE)
   expect_snapshot(comp)
-  expect_snapshot(value_diffs(comp))
+  expect_snapshot(all_value_diffs(comp))
 })
 
 test_that("value_diffs example coerce = FALSE", {
   comp <- tblcompare(df_a, df_b, by = car, coerce = FALSE)
   expect_snapshot(comp)
-  expect_snapshot(value_diffs(comp))
+  expect_snapshot(all_value_diffs(comp))
 })

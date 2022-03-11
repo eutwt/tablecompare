@@ -103,11 +103,29 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
 
 #' @rdname tblcompare
 #' @export
-value_diffs <- function(comparison) {
+value_diffs <- function(comparison, col) {
+  if (!inherits(comparison, "tbcmp_compare")) {
+    abort("`comparison` must be output of `tablecompare::compare()`")
+  }
+  col_nm <- name_select(enquo(col), simulate_df(comparison$summ$column))
+  if (length(col_nm) != 1) {
+    abort("must provide single column to `col`")
+  }
+  comparison$summ[col_nm, value_diffs[[1]]]
+}
+
+#' @rdname tblcompare
+#' @export
+all_value_diffs <- function(comparison) {
   if (!inherits(comparison, 'tbcmp_compare')) {
     abort("`comparison` must be output of `tablecompare::compare()`")
   }
-  comparison$summ[, value_diffs[[1]], keyby = column]
+  val_cols <- c('val_a', 'val_b')
+  comparison$summ[n_diffs > 0, {
+    copy(value_diffs[[1]])[,
+      (val_cols) := lapply(.SD, as.character),
+      .SDcols = val_cols]
+  }, keyby = column]
 }
 
 # Helpers ---------
