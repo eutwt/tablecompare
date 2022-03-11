@@ -78,7 +78,7 @@ assert_unique <- function(.data, by, data_chr, by_chr) {
 
   first_dupe <-
     head(count_dupes(.data, {{ by }}), 1) %>%
-      setcolorder('n_rows', before = 1)
+      setcolorder(c('n_rows', setdiff(names(.), 'n_rows')))
   if (nrow(first_dupe) > 0) {
     first_dupe_print <- capture.output(
       print(first_dupe[], row.names = FALSE, trun.cols = TRUE)
