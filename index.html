@@ -79,7 +79,7 @@
              wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="va">.</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">[</span>, <span class="va">car</span> <span class="op">:=</span> <span class="st">"extra_b"</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<p>With tablecompare, you should be able to easily see what rows have different values, what rows are only in one table, and what columns are only in one table</p>
+<p>Use <code><a href="reference/tblcompare.html">tblcompare()</a></code> to see - The number of differing values in each column - <code>tblcompare()$summ</code> - Which columns are in only one table - <code>tblcompare()$unmatched_cols</code> - Which rows are in only one table - <code>tblcompare()$unmatched_rows</code></p>
 <pre class="{r}"><code><span class="va">comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tblcompare.html">tblcompare</a></span><span class="op">(</span><span class="va">df_a</span>, <span class="va">df_b</span>, by <span class="op">=</span> <span class="va">car</span><span class="op">)</span>
 <span class="va">comp</span>
 <span class="co">#&gt; $tables</span>
@@ -119,14 +119,13 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "tbcmp_compare"</span></code></pre>
-<p>You can use <code>value_diffs(&lt;tblcomp&gt;)</code> to see the specific values that are different.</p>
+<p>Use <code>value_diffs(&lt;tblcomp&gt;)</code> to see the specific values that are different. - The row numbers <code>i_a</code> and <code>i_b</code> allow for easy subsetting of the original tables using the <code><a href="reference/tblcompare.html">value_diffs()</a></code> output.</p>
 <pre class="{r}"><code><span class="fu"><a href="reference/tblcompare.html">value_diffs</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span>
 <span class="co">#&gt;    column i_a i_b val_a val_b            car</span>
 <span class="co">#&gt; 1:   disp   3   2 109.0 108.0     Datsun 710</span>
 <span class="co">#&gt; 2:   disp   4   3 259.0 258.0 Hornet 4 Drive</span>
 <span class="co">#&gt; 3:    mpg   7   6  14.3  16.3     Duster 360</span>
 <span class="co">#&gt; 4:    mpg   8   7  24.4  26.4      Merc 240D</span></code></pre>
-<p><sup>Created on 2022-03-11 by the <a href="https://reprex.tidyverse.org" class="external-link">reprex package</a> (v2.0.1)</sup></p>
 </div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
