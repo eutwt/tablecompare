@@ -59,7 +59,10 @@
 <p><strong>Defining features of tablecompare:</strong></p>
 <ul>
 <li>All output is provided as a data frame</li>
-<li>Comparisons should be fast, mostly based on a join of the two tables with <code>merge.data.table</code>.</li>
+<li>Comparisons should be fast, mostly based on a join of the two tables with <code>merge.data.table</code>
+</li>
+<li>Functions with column-selecting arguments use <a href="https://tidyselect.r-lib.org/" class="external-link">tidyselect</a>
+</li>
 </ul>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
