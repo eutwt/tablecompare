@@ -26,4 +26,5 @@ RoxygenNote: 7.1.1
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://eutwt.github.io/tablecompare/
+URL: https://github.com/eutwt/tablecompare
+BugReports: https://github.com/eutwt/tablecompare/issues

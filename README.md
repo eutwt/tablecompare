@@ -1,15 +1,31 @@
-# tablecompare
 
-Compare two tables by a set of ID variables.  
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-**Defining features of tablecompare:**
+# tablecompare <img id="logo" src="man/figures/logo.png" align="right" width="17%" height="17%" />
 
- - All output is provided as a data frame
- - Comparisons should be fast, mostly based on a join of the two tables with `merge.data.table`
- - Functions with column-selecting arguments use [tidyselect](https://tidyselect.r-lib.org/)
+<!-- badges: start -->
+<!-- badges: end -->
 
+### Defining features:
 
-**Example:**
+-   All output is provided as a data frame or list of data frames
+-   Comparisons are fast, driven by
+    [data.table](https://rdatatable.gitlab.io/data.table/)
+-   Functions with column-selecting arguments use
+    [tidyselect](https://tidyselect.r-lib.org/)
+
+## Installation
+
+You can install the development version of tablecompare from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("eutwt/tablecompare")
+```
+
+## Example
+
 ``` r
 library(tablecompare)
 library(data.table)
@@ -41,11 +57,12 @@ df_b <- fread('
 ')
 ```
 
-Use `tblcompare()` to see 
+Use `tblcompare()` to see
 
-- The number of differing values in each column - `tblcompare()$summ`
-- Which columns are in only one table - `tblcompare()$unmatched_cols`
-- Which rows are in only one table - `tblcompare()$unmatched_rows`
+-   The number of differing values in each column - `tblcompare()$summ`
+-   Which columns are in only one table - `tblcompare()$unmatched_cols`
+-   Which rows are in only one table - `tblcompare()$unmatched_rows`
+
 ``` r
 comp <- tblcompare(df_a, df_b, by = car)
 comp
@@ -83,10 +100,12 @@ comp
 #> [1] "tbcmp_compare"
 ```
 
-Use `value_diffs(<tblcomp>, col)` to see the specific values that are different.
+Use `value_diffs()` to see the specific values that are different.
 
-- The row numbers `i_a` and `i_b` allow for easy subsetting of the original tables using the `value_diffs()` output.
-```r
+-   The row numbers `i_a` and `i_b` allow for easy subsetting of the
+    original tables using the `value_diffs()` output.
+
+``` r
 value_diffs(comp, disp)
 #>    i_a i_b val_a val_b            car
 #> 1:   4   4   109   108     Datsun 710
@@ -97,10 +116,12 @@ value_diffs(comp, mpg)
 #> 2:   5   1  24.4  26.4  Merc 240D
 ```
 
-Use `all_value_diffs(<tblcomp>)` to combine all `value_diffs()` output into one table 
+Use `all_value_diffs()` to combine all `value_diffs()` output into one
+table
 
-- `val_a` and `val_b` are coerced to character
-```r
+-   `val_a` and `val_b` are coerced to character
+
+``` r
 all_value_diffs(comp)
 #>    column i_a i_b val_a val_b            car
 #> 1:   disp   4   4   109   108     Datsun 710
@@ -108,5 +129,3 @@ all_value_diffs(comp)
 #> 3:    mpg   1   3  14.3  16.3     Duster 360
 #> 4:    mpg   5   1  24.4  26.4      Merc 240D
 ```
-
-<sup>Created on 2022-03-12 by the [reprex package](https://reprex.tidyverse.org) (v2.0.1)</sup>
