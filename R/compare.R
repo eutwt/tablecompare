@@ -146,7 +146,7 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
   var_b <- glue("{present_ind}_b")
   .data_split <- .data[, fcase(is.na(get(var_b)), 'a',
                                is.na(get(var_a)), 'b',
-                               rep(TRUE, .N), 'common')]
+                               default = 'common')]
   .data <- split(.data, .data_split)
 
   .data$unmatched <-
