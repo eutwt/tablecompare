@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' df <- read.table(text = '
+#' df <- read.table(text = "
 #' x y z
 #' a 1 3
 #' a 1 3
@@ -24,7 +24,7 @@
 #' a 2 2
 #' b 1 1
 #' b 1 2
-#' ', header = TRUE)
+#' ", header = TRUE)
 #'
 #' assert_single_value(df, z, by = c(x, y))
 #' #> Error in `assert_single_value()`:
@@ -51,14 +51,15 @@ count_values <- function(.data, col, by, setkey = FALSE) {
   by_names <- name_select(enexpr(by), .data)
   out <-
     seij(.data, j = c(col_names, by_names)) %>%
-      as.data.table %>%
-      unique %>%
-      .[, .(n_vals = .N), by = by_names] %>%
-      .[n_vals > 1]
-  if (setkey)
+    as.data.table() %>%
+    unique() %>%
+    .[, .(n_vals = .N), by = by_names] %>%
+    .[n_vals > 1]
+  if (setkey) {
     setkeyv(out, by_names)[]
-  else
+  } else {
     out[]
+  }
 }
 
 #' @rdname count-values

@@ -6,12 +6,12 @@ arg_abort_msg <- function(.arg, .fun) {
 
 get_output <- function(x) {
   capture.output(print(x)) %>%
-    glue_collapse('\n')
+    glue_collapse("\n")
 }
 
 shorten <- function(x, maxlen = 10) {
   if (length(x) > 1) {
-    x <- glue_collapse(x, '')
+    x <- glue_collapse(x, "")
     abort(c("Input to `shorten` has length > 1. Input is:", x))
   }
   if (nchar(x) > maxlen) {
@@ -28,14 +28,14 @@ arg_to_char <- function(arg, maxlen = 10, shorten = TRUE) {
   arg_name <- deparse(substitute(arg))
   char <-
     match.call(definition = sys.function(-1), call = sys.call(-1)) %>%
-      as.list() %>%
-      '[['(arg_name) %>%
-      deparse
+    as.list() %>%
+    "[["(arg_name) %>%
+    deparse()
   shorten(char, maxlen = maxlen)
 }
 
 char_class <- function(x) {
-  glue_collapse(class(x), ', ')
+  glue_collapse(class(x), ", ")
 }
 
 as_colname <- function(x, maxlen = 8) {
@@ -51,7 +51,12 @@ seij <- function(.data, i, j) {
 }
 
 run_anyway <- function(expr) {
-  tryCatch({expr}, error = function(e){})
+  tryCatch(
+    {
+      expr
+    },
+    error = function(e) {}
+  )
 }
 
 intercept <- function(fun) {
@@ -69,10 +74,10 @@ intercept <- function(fun) {
     )
     # have to use named x or else rlang::abort will complain
     if (!is.null(warn)) {
-      warn <- setNames(warn, rep('x', length(warn)))
+      warn <- setNames(warn, rep("x", length(warn)))
     }
     if (!is.null(err)) {
-      err <- setNames(err, rep('x', length(err)))
+      err <- setNames(err, rep("x", length(err)))
     }
     list(res = res, warn = warn, err = err)
   }

@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' df <- read.table(text = '
+#' df <- read.table(text = "
 #' x y z
 #' 1 6 1
 #' 2 6 2
@@ -27,7 +27,7 @@
 #' 3 7 4
 #' 4 3 5
 #' 4 3 6
-#' ', header = TRUE)
+#' ", header = TRUE)
 #'
 #' assert_unique(df, c(x, y))
 #' #> Error in `assert_unique()`:
@@ -78,7 +78,7 @@ assert_unique <- function(.data, by, data_chr, by_chr) {
 
   first_dupe <-
     head(count_dupes(.data, {{ by }}), 1) %>%
-      setcolorder(c('n_rows', setdiff(names(.), 'n_rows')))
+    setcolorder(c("n_rows", setdiff(names(.), "n_rows")))
   if (nrow(first_dupe) > 0) {
     first_dupe_print <- capture.output(
       print(first_dupe[], row.names = FALSE, trun.cols = TRUE)

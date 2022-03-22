@@ -12,7 +12,7 @@
 #' @rdname tblcompare
 #' @export
 tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
-                    coerce = TRUE) {
+                       coerce = TRUE) {
   if (missing(by)) {
     abort("Argument `by` cannot be missing")
   }
@@ -24,7 +24,7 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
   .data_b_chr <- arg_to_char(.data_b)
   table_summ <-
     data.table(
-      table = c('a', 'b'),
+      table = c("a", "b"),
       name = c(.data_a_chr, .data_b_chr),
       ncol = c(ncol(.data_a), ncol(.data_b)),
       nrow = c(nrow(.data_a), nrow(.data_b))
@@ -37,7 +37,8 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
   assert_unique(.data_b, all_of(by_names), by_chr = by_chr)
 
   cols <- merge_split(
-    get_contents(.data_a[, -'i']), get_contents(.data_b[, -'i']), by = column,
+    get_contents(.data_a[, -"i"]), get_contents(.data_b[, -"i"]),
+    by = column,
     present_ind = class
   )
   setorder(cols$common, class_a, class_b, column)
@@ -50,12 +51,13 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
   )
 
   if (nrow(cols$unmatched)) {
-    quietly(set)(.data_a, j = cols$unmatched['a', column], value = NULL)
-    quietly(set)(.data_b, j = cols$unmatched['b', column], value = NULL)
+    quietly(set)(.data_a, j = cols$unmatched["a", column], value = NULL)
+    quietly(set)(.data_b, j = cols$unmatched["b", column], value = NULL)
   }
 
   .data <- merge_split(
-    .data_a, .data_b, by = all_of(by_names), present_ind = i,
+    .data_a, .data_b,
+    by = all_of(by_names), present_ind = i,
     ncol_by_out = ncol_by_out
   )
   rm(.data_a, .data_b)
@@ -71,34 +73,37 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
   value_diffs <-
     lapply(to_compare, function(name) {
       cols_comp <- glue("{name}_{c('a', 'b')}")
-      cols_keep <- c('i_a', 'i_b', cols_comp, by_names_out)
+      cols_keep <- c("i_a", "i_b", cols_comp, by_names_out)
       out <-
         .data$common[, ..cols_keep] %>%
-          setnames(cols_comp, c("val_a", "val_b"))
+        setnames(cols_comp, c("val_a", "val_b"))
       if (allow_bothNA) {
         out[fcoalesce(val_a != val_b, is.na(val_a) + is.na(val_b) == 1L)]
       } else {
         out[fcoalesce(val_a != val_b, is.na(val_a), is.na(val_b))]
       }
     }) %>%
-      setNames(to_compare)
+    setNames(to_compare)
 
-    cols$compare[, n_diffs := sapply(value_diffs, nrow)[column]]
-    cols$compare <- cols$compare[, .(column, n_diffs, class_a, class_b)]
-    if (nrow(cols$unmatched)) {
-      cols$unmatched <- cols$unmatched[, .(table, column, class)]
-    }
+  cols$compare[, n_diffs := sapply(value_diffs, nrow)[column]]
+  cols$compare <- cols$compare[, .(column, n_diffs, class_a, class_b)]
+  if (nrow(cols$unmatched)) {
+    cols$unmatched <- cols$unmatched[, .(table, column, class)]
+  }
 
-    cols$compare[, value_diffs := value_diffs[column]]
-    setkey(cols$compare, column)
+  cols$compare[, value_diffs := value_diffs[column]]
+  setkey(cols$compare, column)
 
-    structure(
-      list(tables = table_summ,
-           by = cols$by,
-           summ = cols$compare,
-           unmatched_cols = cols$unmatched,
-           unmatched_rows = .data$unmatched),
-      class = 'tbcmp_compare')
+  structure(
+    list(
+      tables = table_summ,
+      by = cols$by,
+      summ = cols$compare,
+      unmatched_cols = cols$unmatched,
+      unmatched_rows = .data$unmatched
+    ),
+    class = "tbcmp_compare"
+  )
 }
 
 #' @rdname tblcompare
@@ -117,15 +122,19 @@ value_diffs <- function(comparison, col) {
 #' @rdname tblcompare
 #' @export
 all_value_diffs <- function(comparison) {
-  if (!inherits(comparison, 'tbcmp_compare')) {
+  if (!inherits(comparison, "tbcmp_compare")) {
     abort("`comparison` must be output of `tablecompare::compare()`")
   }
-  val_cols <- c('val_a', 'val_b')
-  comparison$summ[n_diffs > 0, {
-    copy(value_diffs[[1]])[,
-      (val_cols) := lapply(.SD, as.character),
-      .SDcols = val_cols]
-  }, keyby = column]
+  val_cols <- c("val_a", "val_b")
+  comparison$summ[n_diffs > 0,
+    {
+      copy(value_diffs[[1]])[,
+        (val_cols) := lapply(.SD, as.character),
+        .SDcols = val_cols
+      ]
+    },
+    keyby = column
+  ]
 }
 
 # Helpers ---------
@@ -136,17 +145,18 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
   by_names_out <- by_names[seq_len(min(ncol_by_out, length(by_names)))]
   present_ind <- arg_to_char(present_ind, shorten = FALSE)
 
-  setnames(.data_a, function(x) suffix(x, 'a', exclude = by_names))
-  setnames(.data_b, function(x) suffix(x, 'b', exclude = by_names))
+  setnames(.data_a, function(x) suffix(x, "a", exclude = by_names))
+  setnames(.data_b, function(x) suffix(x, "b", exclude = by_names))
   .data <- merge(.data_a, .data_b, by = by_names, all = TRUE)
-  setnames(.data_a, function(x) unsuffix(x, 'a', exclude = by_names))
-  setnames(.data_b, function(x) unsuffix(x, 'b', exclude = by_names))
+  setnames(.data_a, function(x) unsuffix(x, "a", exclude = by_names))
+  setnames(.data_b, function(x) unsuffix(x, "b", exclude = by_names))
 
   var_a <- glue("{present_ind}_a")
   var_b <- glue("{present_ind}_b")
-  .data_split <- .data[, fcase(is.na(get(var_b)), 'a',
-                               is.na(get(var_a)), 'b',
-                               default = 'common')]
+  .data_split <- .data[, fcase(is.na(get(var_b)), "a",
+    is.na(get(var_a)), "b",
+    default = "common"
+  )]
   .data <- split(.data, .data_split)
 
   .data$unmatched <-
@@ -158,8 +168,8 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
           function(x) unsuffix(x, .y, exclude = by_names_out)
         )
       }
-    }, .id = 'table') %>%
-      as.data.table
+    }, .id = "table") %>%
+    as.data.table()
   if (nrow(.data$unmatched)) setkey(.data$unmatched, table)
   .data[c("a", "b")] <- NULL
   .data
@@ -167,7 +177,7 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
 
 suffix <- function(x, suffix, exclude = character()) {
   include <- !x %in% exclude
-  x[include] <- paste0(x[include], '_', suffix)
+  x[include] <- paste0(x[include], "_", suffix)
   x
 }
 
