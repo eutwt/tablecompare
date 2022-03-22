@@ -1,4 +1,4 @@
-#' Check for duplicate values
+#' Check for existence of multiple values per group
 #'
 #' @description
 #' `count_values()` returns values of `by` variables for which the `.data` has
