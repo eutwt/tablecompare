@@ -3,7 +3,7 @@
 \name{count_values}
 \alias{count_values}
 \alias{assert_single_value}
-\title{Check for duplicate values}
+\title{Check for existence of multiple values per group}
 \usage{
 count_values(.data, col, by, setkey = FALSE)
 
@@ -28,7 +28,7 @@ any combination of `by` variable values, only considering columns in `col`
 }
 \examples{
 \dontrun{
-df <- read.table(text = '
+df <- read.table(text = "
 x y z
 a 1 3
 a 1 3
@@ -37,7 +37,7 @@ a 2 4
 a 2 2
 b 1 1
 b 1 2
-', header = TRUE)
+", header = TRUE)
 
 assert_single_value(df, z, by = c(x, y))
 #> Error in `assert_single_value()`:

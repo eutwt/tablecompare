@@ -35,6 +35,8 @@ considered as equal}
 \item{coerce}{Logical. If False only columns with the same class are compared.}
 
 \item{comparison}{The output of a `tablecompare::tablecompare()` call.}
+
+\item{col}{tidy-select single column}
 }
 \description{
 Compare two data frames

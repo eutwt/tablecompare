@@ -27,4 +27,5 @@ contents(ToothGrowth)
 #> 2:   dose numeric
 #> 3:    len numeric
 }
+
 }

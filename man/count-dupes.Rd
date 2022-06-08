@@ -33,7 +33,7 @@ combination of `by` variable values
 }
 \examples{
 \dontrun{
-df <- read.table(text = '
+df <- read.table(text = "
 x y z
 1 6 1
 2 6 2
@@ -41,7 +41,7 @@ x y z
 3 7 4
 4 3 5
 4 3 6
-', header = TRUE)
+", header = TRUE)
 
 assert_unique(df, c(x, y))
 #> Error in `assert_unique()`:

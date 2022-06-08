@@ -8,6 +8,7 @@
 #' `unmatched_rows` output
 #' @param coerce Logical. If False only columns with the same class are compared.
 #' @param comparison The output of a `tablecompare::tablecompare()` call.
+#' @param col tidy-select single column
 
 #' @rdname tblcompare
 #' @export

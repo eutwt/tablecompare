@@ -86,3 +86,20 @@ intercept <- function(fun) {
 simulate_df <- function(vars) {
   as.data.frame(rep_named(vars, list(logical())))
 }
+
+utils::globalVariables(c(
+  "n_diffs",
+  "column",
+  "i",
+  "all_of",
+  "column",
+  "class_a",
+  "class_b",
+  "..cols_keep",
+  "val_a",
+  "val_b",
+  "n_rows",
+  "n_values",
+  "n_vals",
+  "."
+))
