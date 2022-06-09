@@ -161,7 +161,7 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
   .data <- split(.data, .data_split)
 
   .data$unmatched <-
-    imap_dfr(.data[c("a", "b")], ~ {
+    imap(.data[c("a", "b")], ~ {
       if (!is.null(.x)) {
         cols_keep <- c(glue("{present_ind}_{.y}"), by_names_out)
         setnames(
@@ -169,8 +169,8 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
           function(x) unsuffix(x, .y, exclude = by_names_out)
         )
       }
-    }, .id = "table") %>%
-    as.data.table()
+    }) %>%
+    rbindlist(idcol = 'table')
   if (nrow(.data$unmatched)) setkey(.data$unmatched, table)
   .data[c("a", "b")] <- NULL
   .data
