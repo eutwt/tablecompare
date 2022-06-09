@@ -3,13 +3,8 @@ Type: Package
 Title: Compare Data Frames
 Version: 0.1.0
 Authors@R: 
-  person(
-    given = "Ryan",
-    family = "Dickerson",
-    role = c("aut", "cre"),
-    email = "fresh.tent5866@fastmail.com")
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+    person("Ryan", "Dickerson", , "ryandickerson@fastmail.com", role = c("aut", "cre"))
+Description: Compare two data frames
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
