@@ -1,8 +1,8 @@
 pandoc: 2.14.2
-pkgdown: 2.0.3
+pkgdown: 2.0.4
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-06-09T13:43Z
+last_built: 2022-06-10T19:49Z
 urls:
   reference: https://eutwt.github.io/tablecompare/reference
   article: https://eutwt.github.io/tablecompare/articles
