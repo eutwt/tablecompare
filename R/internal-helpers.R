@@ -1,7 +1,7 @@
 #' @keywords internal
 
 arg_abort_msg <- function(.arg, .fun) {
-  glue("Progblem with `{.arg}` arguemtn to `{.fun}`")
+  glue("Problem with `{.arg}` argument to `{.fun}`")
 }
 
 get_output <- function(x) {
