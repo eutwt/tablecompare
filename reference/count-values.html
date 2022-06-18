@@ -88,17 +88,19 @@ rows, onlt the columns specified in <code>col</code> are considered.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p><code>count_values()</code> returns a <code>data.table</code> with the (filtered) <code>by</code></p>
+<dl><dt><code>count_values()</code></dt>
+<dd><p>A <code>data.table</code> with the (filtered)
+<code>by</code> columns and an additional column "n_vals" which shows the number of
+unique rows in <code>.data</code> having the combination of <code>by</code> values shown
+in the output row.</p></dd>
 
 
-<p>columns and an additional column "n_vals" which shows the number of unique rows
-in <code>.data</code> having the combination of <code>by</code> values shown in the output
-row.</p>
+<dt><code>assert_single_value()</code></dt>
+<dd><p>No return value. Called to throw an
+error depending on the input.</p></dd>
 
 
-<p><code>assert_single_value()</code> has no return value and is called to throw an
-error depending on the input.</p>
-    </div>
+</dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

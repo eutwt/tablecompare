@@ -104,7 +104,8 @@ considered as equal</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p><code>tblcompare()</code> returns a "tbcmp_compare"-class object, which is a list
+<dl><dt><code>tblcompare()</code></dt>
+<dd><p>A "tbcmp_compare"-class object, which is a list
 of <code>data.table</code>`s  having the following elements:</p><dl><dt>tables</dt>
 <dd><p>A <code>data.table</code> with one row per input table showing the number of rows
     and columns in each</p></dd>
@@ -135,24 +136,26 @@ of <code>data.table</code>`s  having the following elements:</p><dl><dt>tables</
    <code>by</code> columns for each row.</p></dd>
 
 
-</dl><p><code>value_diffs()</code> returns a <code>data.table</code> with one row for each element
+</dl></dd>
+
+<dt><code>value_diffs()</code></dt>
+<dd><p>A <code>data.table</code> with one row for each element
 of <code>col</code> found to be unequal between the input tables (
 <code>.data_a</code> and <code>.data_b</code> from the original <code>tblcompare()</code> call)
 The output table has columns "i_a"/"i_b": the row number of the element in the input
 tables, "val_a"/"val_b": the value of <code>col</code> in the input tables, and one column for
-each of the first <code>ncol_by_out</code></p>
-<p></p>
-<p><code>by</code> columns for the identified rows in the
-input tables.</p>
+each of the first <code>ncol_by_out</code> <code>by</code> columns for the identified rows in the
+input tables.</p></dd>
 
 
-<p><code>all_value_diffs()</code> returns a <code>data.table</code> of the <code>value_diffs()</code></p>
-
-
-<p>output for all columns having at least one value difference, combined row-wise
+<dt><code>all_value_diffs()</code></dt>
+<dd><p>A <code>data.table</code> of the <code>value_diffs()</code>
+output for all columns having at least one value difference, combined row-wise
 into a single table. To facilitate this combination into a single table, the
-"val_a" and "val_b" columns are coerced to character.</p>
-    </div>
+"val_a" and "val_b" columns are coerced to character.</p></dd>
+
+
+</dl></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
