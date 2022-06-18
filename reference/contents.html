@@ -48,7 +48,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">contents</span><span class="op">(</span><span class="va">.data</span>, cat_nrow <span class="op">=</span> <span class="cn">TRUE</span>, big_mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">contents</span><span class="op">(</span><span class="va">.data</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,28 +56,39 @@
     <dl><dt>.data</dt>
 <dd><p>A data frame</p></dd>
 
+</dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
 
-<dt>cat_nrow</dt>
-<dd><p>Logical. If true, the number of rows is `cat`ed out</p></dd>
+<p>A <code>data.table</code> having the below-listed columns, one row per column in <code>.data</code></p>
 
 
-<dt>big_mark</dt>
-<dd><p>Passed to the `big.mark` argument of `format` when formatting
-the number of rows</p></dd>
+<dl><dt>column</dt>
+<dd><p>The name of the column in <code>.data</code> (character)</p></dd>
+
+  <dt>class</dt>
+<dd><p>Shows the output of a <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class()</a></code> call on the column in <code>.data</code>
+      (character). If <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class()</a></code> returns a length &gt; 1 vector, the elements
+      are combined into one comma-separated string</p></dd>
+
 
 </dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">contents</span><span class="op">(</span><span class="va">ToothGrowth</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">#&gt; Number of Rows: 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    column   class</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:   supp  factor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:   dose numeric</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:    len numeric</span>
 <span class="r-in"><span class="co">#&gt;    column   class</span></span>
 <span class="r-in"><span class="co">#&gt;    &lt;char&gt;  &lt;char&gt;</span></span>
 <span class="r-in"><span class="co">#&gt; 1:   supp  factor</span></span>
 <span class="r-in"><span class="co">#&gt; 2:   dose numeric</span></span>
 <span class="r-in"><span class="co">#&gt; 3:    len numeric</span></span>
-<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
