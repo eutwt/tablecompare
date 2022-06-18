@@ -4,7 +4,7 @@ Title: Compare Data Frames
 Version: 0.1.0
 Authors@R: 
     person("Ryan", "Dickerson", , "fresh.tent5866@fastmail.com", role = c("aut", "cre"))
-Description: A package for comparing two data frames with the aim of quick and 
+Description: A toolbox for comparing two data frames with the aim of quick and 
   simple functionality. Using a key-column common to both tables, see which rows 
   are common and highlight differing values by column. Also included are functions
   validating keys and uniqueness of in-group values.
@@ -12,11 +12,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    crayon,
     glue,
     magrittr,
     rlang (>= 0.4.3),
-    tibble (>= 3.0.0),
     tidyselect (>= 0.4.3),
     purrr
 RoxygenNote: 7.1.1

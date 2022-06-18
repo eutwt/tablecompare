@@ -13,7 +13,7 @@ assert_single_value(.data, col, by)
 \item{.data}{A data frame or data table}
 
 \item{col}{tidy-select. Columns in \code{.data}. When counting the number of unique
-rows, onlt the columns specified in \code{col} are considered.}
+rows, only the columns specified in \code{col} are considered.}
 
 \item{by}{tidy-select. Columns in \code{.data}.}
 
