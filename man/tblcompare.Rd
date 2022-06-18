@@ -44,7 +44,7 @@ considered as equal}
 \value{
 \describe{
 \item{\code{tblcompare()}}{A "tbcmp_compare"-class object, which is a list
-of \code{data.table}`s  having the following elements:
+of \code{data.table}s  having the following elements:
 \describe{
   \item{tables}{
     A \code{data.table} with one row per input table showing the number of rows
