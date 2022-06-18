@@ -57,13 +57,6 @@ count_dupes(df, c(x, y))
 
 \dontrun{
 assert_unique(df, c(x, y))
-#> Error in `assert_unique()`:
-#> ! Input `df` is not unique by `c(x, y)`.
-#> • First duplicate:
-#> •  n_rows     x     y
-#> •   <int> <int> <int>
-#> •       2     3     7
-#> • Use `count_dupes()` to see all duplicates.
 }
 
 }

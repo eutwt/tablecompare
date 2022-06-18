@@ -54,14 +54,6 @@ count_values(df, z, by = c(x, y))
 
 \dontrun{
 assert_single_value(df, z, by = c(x, y))
-#> Error in `assert_single_value()`:
-#> ! Input `df` has multiple unique rows within a single group
-#> grouping: `c(x, y)`
-#> columns considered: `z`
-#>  x y n_vals
-#>  a 2      2
-#> ℹ Use `count_values()` to see all groups with multiple values.
-#> Run `rlang::last_error()` to see where the error occurred.
 }
 
 }
