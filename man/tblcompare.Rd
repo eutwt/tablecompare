@@ -4,7 +4,8 @@
 \alias{tblcompare}
 \alias{value_diffs}
 \alias{all_value_diffs}
-\title{Compare two data frames}
+\title{Compare two data frames. Using a key-column common to both tables, see which
+rows are common and highlight differing values by column.}
 \usage{
 tblcompare(
   .data_a,
@@ -20,24 +21,77 @@ value_diffs(comparison, col)
 all_value_diffs(comparison)
 }
 \arguments{
-\item{.data_a}{A data frame}
+\item{.data_a}{A data frame or data table}
 
-\item{.data_b}{A data frame}
+\item{.data_b}{A data frame or data table}
 
-\item{by}{tidy-select selection of columns}
+\item{by}{tidy-select. Selection of columns to use when matching rows between
+\code{.data_a} and \code{.data_b}. Both data frames must be unique on \code{by}.}
 
 \item{allow_bothNA}{Logical. If TRUE a missing value in both data frames is
 considered as equal}
 
-\item{ncol_by_out}{Number of by-columns to include in `col_diffs` and
-`unmatched_rows` output}
+\item{ncol_by_out}{Number of by-columns to include in \code{col_diffs} and
+\code{unmatched_rows} output}
 
 \item{coerce}{Logical. If False only columns with the same class are compared.}
 
-\item{comparison}{The output of a `tablecompare::tablecompare()` call.}
+\item{comparison}{An object of class "tbcmp_compare" (the output of a
+\code{tablecompare::tablecompare()} call)}
 
-\item{col}{tidy-select single column}
+\item{col}{tidy-select. A single column}
+}
+\value{
+\describe{
+\item{\code{tblcompare()}}{A "tbcmp_compare"-class object, which is a list
+of \code{data.table}`s  having the following elements:
+\describe{
+  \item{tables}{
+    A \code{data.table} with one row per input table showing the number of rows
+    and columns in each.
+  }
+  \item{by}{
+    A \code{data.table} with one row per \code{by} column showing the class
+    of the column in each of the input tables.
+ }
+ \item{summ}{
+   A \code{data.table} with one row per column common to \code{.data_a} and
+   \code{.data_b} and columns "n_diffs" showing the number of values which
+   are different between the two tables, "class_a"/"class_b" the class of the
+   column in each table, and "value_diffs" a (nested) \code{data.table} showing
+   the rows in each input table where values are unequal, the values in each
+   table, and one column for each of the first \code{ncol_by_out} \code{by} columns for
+   the identified rows in the input tables.
+ }
+ \item{unmatched_cols}{
+   A \code{data.table} with one row per column which is in one input table but
+   not the other and columns "table": which table the column appears in,
+   "column": the name of the column, and "class": the class of the
+   column.
+ }
+ \item{unmatched_rows}{
+   A \code{data.table} which, for each row present in one input table but not
+   the other, contains the columns "table": which table the row appears in,
+   "i" the row number of the input row, and one column for each of the first
+   \code{ncol_by_out} \code{by} columns for each row.
+ }
+}
+}
+\item{\code{value_diffs()}}{A \code{data.table} with one row for each element
+of \code{col} found to be unequal between the input tables (
+\code{.data_a} and \code{.data_b} from the original \code{tblcompare()} call)
+The output table has columns "i_a"/"i_b": the row number of the element in the input
+tables, "val_a"/"val_b": the value of \code{col} in the input tables, and one column for
+each of the first \code{ncol_by_out} \code{by} columns for the identified rows in the
+input tables.}
+
+\item{\code{all_value_diffs()}}{A \code{data.table} of the \code{value_diffs()}
+output for all columns having at least one value difference, combined row-wise
+into a single table. To facilitate this combination into a single table, the
+"val_a" and "val_b" columns are coerced to character.}
+}
 }
 \description{
-Compare two data frames
+Compare two data frames. Using a key-column common to both tables, see which
+rows are common and highlight differing values by column.
 }

@@ -20,12 +20,15 @@ rows, onlt the columns specified in \code{col} are considered.}
 \item{setkey}{Logical. Should the output be keyed by \code{by} cols?}
 }
 \value{
-\code{count_values()} returns a \code{data.table} with the (filtered) \code{by}
-columns and an additional column "n_vals" which shows the number of unique rows
-for the combination of \code{by} values present in the given row.
+\describe{
+\item{\code{count_values()}}{A \code{data.table} with the (filtered)
+\code{by} columns and an additional column "n_vals" which shows the number of
+unique rows in \code{.data} having the combination of \code{by} values shown
+in the output row.}
 
-\code{assert_single_value()} has no return value and is called to throw an
-error depending on the input.
+\item{\code{assert_single_value()}}{No return value. Called to throw an
+error depending on the input.}
+}
 }
 \description{
 \code{count_values()} returns values of \code{by} variables for which the \code{.data} has

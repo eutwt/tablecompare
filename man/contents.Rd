@@ -7,30 +7,17 @@
 contents(.data)
 }
 \arguments{
-\item{.data}{A data frame}
+\item{.data}{A data frame or data table}
 }
 \value{
-A \code{data.table} having the below-listed columns, one row per column in \code{.data}
-\describe{
-  \item{column}{The name of the column in \code{.data} (character)}
-  \item{class}{
-      Shows the output of a \code{class()} call on the column in \code{.data}
-      (character). If \code{class()} returns a length > 1 vector, the elements
-      are combined into one comma-separated string
- }
-}
+A \code{data.table} with one row per column in \code{.data} and columns
+"column": The name of the column in \code{.data}, "class": the names of classes
+the column inherits from (as returned by \code{class()}), collapsed into a single string.
 }
 \description{
 Show the contents of a data frame
 }
 \examples{
-\donttest{
 contents(ToothGrowth)
-#>    column   class
-#>    <char>  <char>
-#> 1:   supp  factor
-#> 2:   dose numeric
-#> 3:    len numeric
-}
 
 }

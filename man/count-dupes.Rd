@@ -12,24 +12,35 @@ assert_unique(.data, by, data_chr, by_chr)
 \arguments{
 \item{.data}{A data frame or data table}
 
-\item{by}{tidy-select. Columns in `.data`}
+\item{by}{tidy-select. Columns in \code{.data}}
 
-\item{setkey}{Logical. Should the output be keyed by `by` cols?}
+\item{setkey}{Logical. Should the output be keyed by \code{by} cols?}
 
 \item{data_chr}{optional. character. You can use this argument to manually specify
-the name of `data` shown in error messages. Useful when using these functions
+the name of \code{data} shown in error messages. Useful when using these functions
 as checks inside other functions.}
 
 \item{by_chr}{optional. character. You can use this argument to manually specify
-the name of `by` shown in error messages. Useful when using these functions
+the name of \code{by} shown in error messages. Useful when using these functions
 as checks inside other functions.}
 }
+\value{
+\describe{
+\item{\code{count_dupes()}}{A \code{data.table} with the (filtered) \code{by}
+columns and an additional column "n_rows" which shows the number of rows in
+\code{.data} having the combination of \code{by} values shown in the output
+row.}
+
+\item{\code{assert_unique()}}{No return value. Called to throw an
+error depending on the input.}
+}
+}
 \description{
-`count_dupes()` returns values of `by` variables for which the `.data` has
+\code{count_dupes()} returns values of \code{by} variables for which the \code{.data} has
 multiple rows, along with the number of rows for each combination of values.
 
-`assert_unique()` throws an error if there are multiple rows for any
-combination of `by` variable values
+\code{assert_unique()} throws an error if there are multiple rows for any
+combination of \code{by} variable values
 }
 \examples{
 df <- read.table(text = "
@@ -43,6 +54,7 @@ x y z
 ", header = TRUE)
 
 count_dupes(df, c(x, y))
+
 \dontrun{
 assert_unique(df, c(x, y))
 #> Error in `assert_unique()`:
