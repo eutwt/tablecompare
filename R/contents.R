@@ -1,12 +1,17 @@
 #' Show the contents of a data frame
 #' @param .data A data frame
-#' @param cat_nrow Logical. If true, the number of rows is `cat`ed out
-#' @param big_mark Passed to the `big.mark` argument of `format` when formatting
-#' the number of rows
+#' @return A \code{data.table} having the below-listed columns, one row per column in \code{.data}
+#' \describe{
+#'   \item{column}{The name of the column in \code{.data} (character)}
+#'   \item{class}{
+#'       Shows the output of a \code{class()} call on the column in \code{.data}
+#'       (character). If \code{class()} returns a length > 1 vector, the elements
+#'       are combined into one comma-separated string
+#'  }
+#' }
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' contents(ToothGrowth)
-#' #> Number of Rows: 60
 #' #>    column   class
 #' #>    <char>  <char>
 #' #> 1:   supp  factor
@@ -16,12 +21,9 @@
 #'
 #' @rdname contents
 #' @export
-contents <- function(.data, cat_nrow = TRUE, big_mark = ",") {
+contents <- function(.data) {
   if (!ncol(.data)) {
     return(data.table())
-  }
-  if (cat_nrow) {
-    cat("Number of Rows:", format(nrow(.data), big.mark = big_mark), "\n")
   }
   get_contents(.data)
 }

@@ -32,7 +32,6 @@ multiple rows, along with the number of rows for each combination of values.
 combination of `by` variable values
 }
 \examples{
-\dontrun{
 df <- read.table(text = "
 x y z
 1 6 1
@@ -43,6 +42,8 @@ x y z
 4 3 6
 ", header = TRUE)
 
+count_dupes(df, c(x, y))
+\dontrun{
 assert_unique(df, c(x, y))
 #> Error in `assert_unique()`:
 #> ! Input `df` is not unique by `c(x, y)`.
@@ -51,12 +52,6 @@ assert_unique(df, c(x, y))
 #> •   <int> <int> <int>
 #> •       2     3     7
 #> • Use `count_dupes()` to see all duplicates.
-
-count_dupes(df, c(x, y))
-#>        x     y n_rows
-#>    <int> <int>  <int>
-#> 1:     3     7      2
-#> 2:     4     3      2
 }
 
 }

@@ -4,23 +4,28 @@
 \alias{contents}
 \title{Show the contents of a data frame}
 \usage{
-contents(.data, cat_nrow = TRUE, big_mark = ",")
+contents(.data)
 }
 \arguments{
 \item{.data}{A data frame}
-
-\item{cat_nrow}{Logical. If true, the number of rows is `cat`ed out}
-
-\item{big_mark}{Passed to the `big.mark` argument of `format` when formatting
-the number of rows}
+}
+\value{
+A \code{data.table} having the below-listed columns, one row per column in \code{.data}
+\describe{
+  \item{column}{The name of the column in \code{.data} (character)}
+  \item{class}{
+      Shows the output of a \code{class()} call on the column in \code{.data}
+      (character). If \code{class()} returns a length > 1 vector, the elements
+      are combined into one comma-separated string
+ }
+}
 }
 \description{
 Show the contents of a data frame
 }
 \examples{
-\dontrun{
+\donttest{
 contents(ToothGrowth)
-#> Number of Rows: 60
 #>    column   class
 #>    <char>  <char>
 #> 1:   supp  factor

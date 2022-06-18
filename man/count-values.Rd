@@ -12,22 +12,30 @@ assert_single_value(.data, col, by)
 \arguments{
 \item{.data}{A data frame or data table}
 
-\item{col}{tidy-select. A single column in `.data`}
+\item{col}{tidy-select. Columns in \code{.data}. When counting the number of unique
+rows, onlt the columns specified in \code{col} are considered.}
 
-\item{by}{tidy-select. Columns in `.data`}
+\item{by}{tidy-select. Columns in \code{.data}.}
 
-\item{setkey}{Logical. Should the output be keyed by `by` cols?}
+\item{setkey}{Logical. Should the output be keyed by \code{by} cols?}
+}
+\value{
+\code{count_values()} returns a \code{data.table} with the (filtered) \code{by}
+columns and an additional column "n_vals" which shows the number of unique rows
+for the combination of \code{by} values present in the given row.
+
+\code{assert_single_value()} has no return value and is called to throw an
+error depending on the input.
 }
 \description{
-`count_values()` returns values of `by` variables for which the `.data` has
+\code{count_values()} returns values of \code{by} variables for which the \code{.data} has
 multiple unique rows, along with the number of unique rows for each
-combination of values, only considering columns in `col`
+combination of values, only considering columns in \code{col}.
 
-`assert_single_value()` throws an error if there are multiple unique rows for
-any combination of `by` variable values, only considering columns in `col`
+\code{assert_single_value()} throws an error if there are multiple unique rows for
+any combination of \code{by} variable values, only considering columns in \code{col}.
 }
 \examples{
-\dontrun{
 df <- read.table(text = "
 x y z
 a 1 3
@@ -39,19 +47,18 @@ b 1 1
 b 1 2
 ", header = TRUE)
 
+count_values(df, z, by = c(x, y))
+
+\dontrun{
 assert_single_value(df, z, by = c(x, y))
 #> Error in `assert_single_value()`:
-#> ! Column `z` is not unique by `c(x, y)`.
-#> •       x     y n_vals
-#> •  <char> <int>  <int>
-#> •       a     2      2
-#> • Use `count_values()` to see all groups with multiple values.
-
-count_values(df, z, by = c(x, y))
-#>         x     y n_vals
-#>    <char> <int>  <int>
-#> 1:      a     2      2
-#> 2:      b     1      2
+#> ! Input `df` has multiple unique rows within a single group
+#> grouping: `c(x, y)`
+#> columns considered: `z`
+#>  x y n_vals
+#>  a 2      2
+#> ℹ Use `count_values()` to see all groups with multiple values.
+#> Run `rlang::last_error()` to see where the error occurred.
 }
 
 }
