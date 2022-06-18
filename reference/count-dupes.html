@@ -88,6 +88,21 @@ the name of `by` shown in error messages. Useful when using these functions
 as checks inside other functions.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p><code>count_dupes()</code> returns a <code>data.table</code> with the (filtered) <code>by</code></p>
+
+
+<p>columns and an additional column "n_rows" which shows the number of rows in
+<code>.data</code> having the combination of <code>by</code> values shown in the output
+row.</p>
+
+
+<p><code>assert_unique()</code> has no return value and is called to throw an
+error depending on the input.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

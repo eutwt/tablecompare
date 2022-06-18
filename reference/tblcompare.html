@@ -65,15 +65,16 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>.data_a</dt>
-<dd><p>A data frame</p></dd>
+<dd><p>A data frame or data table</p></dd>
 
 
 <dt>.data_b</dt>
-<dd><p>A data frame</p></dd>
+<dd><p>A data frame or data table</p></dd>
 
 
 <dt>by</dt>
-<dd><p>tidy-select selection of columns</p></dd>
+<dd><p>tidy-select. Selection of columns to use when matching rows between
+<code>.data_a</code> and <code>.data_b</code>. Both data frames must be unique on <code>by</code>.</p></dd>
 
 
 <dt>allow_bothNA</dt>
@@ -82,8 +83,8 @@ considered as equal</p></dd>
 
 
 <dt>ncol_by_out</dt>
-<dd><p>Number of by-columns to include in `col_diffs` and
-`unmatched_rows` output</p></dd>
+<dd><p>Number of by-columns to include in <code>col_diffs</code> and
+<code>unmatched_rows</code> output</p></dd>
 
 
 <dt>coerce</dt>
@@ -91,13 +92,67 @@ considered as equal</p></dd>
 
 
 <dt>comparison</dt>
-<dd><p>The output of a `tablecompare::tablecompare()` call.</p></dd>
+<dd><p>An object of class "tbcmp_compare" (the output of a
+<code><a href="tablecompare-package.html">tablecompare::tablecompare()</a></code> call)</p></dd>
 
 
 <dt>col</dt>
-<dd><p>tidy-select single column</p></dd>
+<dd><p>tidy-select. A single column</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p><code>tblcompare()</code> returns a "tbcmp_compare"-class object, which is a list
+of <code>data.table</code>`s  having the following elements:</p><dl><dt>tables</dt>
+<dd><p>A <code>data.table</code> with one row per input table showing the number of rows
+    and columns in each</p></dd>
+
+  <dt>by</dt>
+<dd><p>A <code>data.table</code> with one row per <code>by</code> column showing the class
+    of the column in each of the input tables</p></dd>
+
+ <dt>summ</dt>
+<dd><p>A <code>data.table</code> with one row per column common to <code>.data_a</code> and
+   <code>.data_b</code> and columns "n_diffs" showing the number of values which
+   are different between the two tables, "class_a"/"class_b" the class of the
+   column in each table, and "value_diffs" a (nested) <code>data.table</code> showing
+   the rows in each input table where values are unequal, the values in each
+   table, and one column for each of the first <code>ncol_by_out</code> <code>by</code> columns for
+   the identified rows in the input tables.</p></dd>
+
+ <dt>unmatched_cols</dt>
+<dd><p>A <code>data.table</code> with one row per column which is in one input table but
+   not the other and columns "table": which table the column appears in,
+   "column": the name of the column, and "class": the class of the
+   column.</p></dd>
+
+ <dt>unmatched_rows</dt>
+<dd><p>A <code>data.table</code> which, for each row present in one input table but not
+   the other, contains "table": which table the row appears in, "i" the row
+   number of the input row, and one column for each of the first <code>ncol_by_out</code>
+   <code>by</code> columns for each row.</p></dd>
+
+
+</dl><p><code>value_diffs()</code> returns a <code>data.table</code> with one row for each element
+of <code>col</code> found to be unequal between the input tables (
+<code>.data_a</code> and <code>.data_b</code> from the original <code>tblcompare()</code> call)
+The output table has columns "i_a"/"i_b": the row number of the element in the input
+tables, "val_a"/"val_b": the value of <code>col</code> in the input tables, and one column for
+each of the first <code>ncol_by_out</code></p>
+<p></p>
+<p><code>by</code> columns for the identified rows in the
+input tables.</p>
+
+
+<p><code>all_value_diffs()</code> returns a <code>data.table</code> of the <code>value_diffs()</code></p>
+
+
+<p>output for all columns having at least one value difference, combined row-wise
+into a single table. To facilitate this combination into a single table, the
+"val_a" and "val_b" columns are coerced to character.</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
