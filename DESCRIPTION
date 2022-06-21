@@ -1,7 +1,7 @@
 Package: tablecompare
 Type: Package
 Title: Compare Data Frames
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Ryan", "Dickerson", , "fresh.tent5866@fastmail.com", role = c("aut", "cre"))
 Description: A toolbox for comparing two data frames with the aim of quick and 
@@ -21,7 +21,7 @@ RoxygenNote: 7.1.1
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/eutwt/tablecompare
+URL: https://eutwt.github.io/tablecompare/
 BugReports: https://github.com/eutwt/tablecompare/issues
 Depends: 
     data.table (>= 1.14.2)

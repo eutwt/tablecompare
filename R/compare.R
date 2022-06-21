@@ -1,15 +1,14 @@
-#' Compare two data frames. Using a key-column common to both tables, see which
-#' rows are common and highlight differing values by column.
+#' Compare two data frames
 #'
 #' @param .data_a A data frame or data table
 #' @param .data_b A data frame or data table
 #' @param by tidy-select. Selection of columns to use when matching rows between
 #' \code{.data_a} and \code{.data_b}. Both data frames must be unique on \code{by}.
-#' @param allow_bothNA Logical. If TRUE a missing value in both data frames is
+#' @param allow_bothNA Logical. If \code{TRUE} a missing value in both data frames is
 #' considered as equal
-#' @param ncol_by_out Number of by-columns to include in \code{col_diffs} and
+#' @param ncol_by_out Number of by-columns to include in \code{value_diffs} and
 #' \code{unmatched_rows} output
-#' @param coerce Logical. If False only columns with the same class are compared.
+#' @param coerce Logical. If \code{FALSE} only columns with the same class are compared.
 #' @param comparison An object of class "tbcmp_compare" (the output of a
 #' \code{tablecompare::tablecompare()} call)
 #' @param col tidy-select. A single column
@@ -17,7 +16,7 @@
 #' @return
 #' \describe{
 #' \item{\code{tblcompare()}}{A "tbcmp_compare"-class object, which is a list
-#' of \code{data.table}s  having the following elements:
+#' of \code{data.table}s having the following elements:
 #' \describe{
 #'   \item{tables}{
 #'     A \code{data.table} with one row per input table showing the number of rows

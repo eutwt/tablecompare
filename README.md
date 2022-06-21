@@ -16,8 +16,15 @@
 
 ## Installation
 
-You can install the development version of tablecompare from
-[GitHub](https://github.com/) with:
+Install the released version from [CRAN](https://CRAN.R-project.org)
+with:
+
+``` r
+install.packages("tablecompare")
+```
+
+Or install the development version from [GitHub](https://github.com/)
+with:
 
 ``` r
 # install.packages("devtools")
