@@ -68,22 +68,23 @@ assert_unique <- function(.data, by, data_chr, by_chr) {
     data_chr <- arg_to_char(.data, 15)
   }
   if (missing(by)) {
+    if(missing(by_chr)){
+      by_chr <- glue("names({data_chr})")
+    }
     by <- names(.data)
-    by_chr <- glue("names({data_chr})")
-  } else if (missing(by_chr)) {
-    by_chr <- arg_to_char(by, 20)
+  } else {
+    if(missing(by_chr)){
+      by_chr <- arg_to_char(by, 20)
+    }
+    by <- name_select(enquo(by), .data)
   }
-  msg <- glue("Input `{data_chr}` is not unique by `{by_chr}`.")
-  msg2 <- glue("Use `count_dupes()` to see all duplicates.")
 
-  first_dupe <-
-    head(count_dupes(.data, {{ by }}), 1) %>%
-    setcolorder(c("n_rows", setdiff(names(.), "n_rows")))
-  if (nrow(first_dupe) > 0) {
-    first_dupe_print <- capture.output(
-      print(first_dupe[], row.names = FALSE, trun.cols = TRUE)
-    )
-    abort(c(msg, "First duplicate:", first_dupe_print, msg2))
+  nrow_unique <- uniqueN(seij(.data, j = by))
+  if (nrow_unique < nrow(.data)) {
+    abort(c(
+      glue("Input `{data_chr}` is not unique by `{by_chr}`."),
+      glue("Use `count_dupes()` to see all duplicates.")
+    ))
   }
   invisible()
 }

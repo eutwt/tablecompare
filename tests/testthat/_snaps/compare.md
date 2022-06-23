@@ -1,9 +1,6 @@
 # Error on input with duplicates
 
     Input `.data_a` is not unique by `c(disp, cyl)`.
-    * First duplicate:
-    *  n_rows disp cyl
-    *       2  160   6
     * Use `count_dupes()` to see all duplicates.
 
 # value_diffs example
