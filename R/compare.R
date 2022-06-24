@@ -97,7 +97,8 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
     present_ind = class
   )
   setorder(cols$common, class_a, class_b, column)
-  if (nrow(cols$unmatched)) setorder(cols$unmatched, table, class, column)
+  setorder(cols$unmatched, table, class, column)
+  setcolorder(cols$unmatched, c('table', 'column', 'class'))
 
   cols <- list(
     by = cols$common[column %in% by_names],
@@ -146,9 +147,6 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
 
   cols$compare[, n_diffs := sapply(value_diffs, nrow)[column]]
   cols$compare <- cols$compare[, .(column, n_diffs, class_a, class_b)]
-  if (nrow(cols$unmatched)) {
-    cols$unmatched <- cols$unmatched[, .(table, column, class)]
-  }
 
   cols$compare[, value_diffs := value_diffs[column]]
   setkey(cols$compare, column)
@@ -224,10 +222,8 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
       )
     ]
   )
-  if (nrow(unmatched)) {
-    setnames(unmatched, "present_ind", present_ind)
-    setkey(unmatched, table)
-  }
+  setnames(unmatched, "present_ind", present_ind)
+  setkey(unmatched, table)
   set(.data, j = 'a_na', value = NULL)
 
   list(unmatched = unmatched, common = .data[!is_unmatched])
