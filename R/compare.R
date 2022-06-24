@@ -125,19 +125,24 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
   } else {
     to_compare <- cols$compare[class_a == class_b, column]
   }
-  value_diffs <-
-    lapply(to_compare, function(name) {
-      cols_comp <- glue("{name}_{c('a', 'b')}")
-      cols_keep <- c("i_a", "i_b", cols_comp, by_names_out)
-      out <-
-        .data$common[, ..cols_keep] %>%
-        setnames(cols_comp, c("val_a", "val_b"))
-      if (allow_bothNA) {
-        out[fcoalesce(val_a != val_b, is.na(val_a) + is.na(val_b) == 1L)]
-      } else {
-        out[fcoalesce(val_a != val_b, is.na(val_a), is.na(val_b))]
-      }
-    }) %>%
+  value_diffs <- lapply(to_compare, function(name) {
+    cols_comp <- glue("{name}_{c('a', 'b')}")
+    setnames(.data$common, cols_comp, c(".val_a", ".val_b"))
+
+    out <- .data$common[
+      i = {
+        if (allow_bothNA) {
+          fcoalesce(.val_a != .val_b, is.na(.val_a) + is.na(.val_b) == 1L)
+        } else {
+          fcoalesce(.val_a != .val_b, is.na(.val_a), is.na(.val_b))
+        }
+      },
+      j = .SD,
+      .SDcols = c("i_a", "i_b", ".val_a", ".val_b", by_names_out)
+    ]
+    setnames(.data$common, c(".val_a", ".val_b"), cols_comp)
+    setnames(out, c(".val_a", ".val_b"), c("val_a", "val_b"))
+  }) %>%
     setNames(to_compare)
 
   cols$compare[, n_diffs := sapply(value_diffs, nrow)[column]]
@@ -205,30 +210,24 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
   setnames(.data_a, function(x) suffix(x, "a", exclude = by_names))
   setnames(.data_b, function(x) suffix(x, "b", exclude = by_names))
   .data <- merge(.data_a, .data_b, by = by_names, all = TRUE)
-  setnames(.data_a, function(x) unsuffix(x, "a", exclude = by_names))
-  setnames(.data_b, function(x) unsuffix(x, "b", exclude = by_names))
 
-  var_a <- glue("{present_ind}_a")
-  var_b <- glue("{present_ind}_b")
-  .data_split <- .data[, fcase(is.na(get(var_b)), "a",
-    is.na(get(var_a)), "b",
-    default = "common"
-  )]
-  .data <- split(.data, .data_split)
-
-  .data$unmatched <-
-    imap(.data[c("a", "b")], ~ {
-      if (!is.null(.x)) {
-        cols_keep <- c(glue("{present_ind}_{.y}"), by_names_out)
-        setnames(
-          .x[, ..cols_keep],
-          function(x) unsuffix(x, .y, exclude = by_names_out)
-        )
-      }
-    }) %>%
-    rbindlist(idcol = 'table')
+  p_a <- sym(glue("{present_ind}_a"))
+  p_b <- sym(glue("{present_ind}_b"))
+  inject(.data[, a_na := is.na(!!p_a)])
+  is_matched <- inject(.data[, !(a_na | is.na(!!p_b))])
+  unmatched <- inject(
+    .data[!is_matched, {
+      .(
+        table = fifelse(a_na, "b", "a"),
+        present_ind = fifelse(a_na, !!p_b, !!p_a),
+        !!!syms(by_names_out)
+      )
+    }]
+  )
+  setnames(unmatched, "present_ind", present_ind)
+  set(.data, j = 'a_na', value = NULL)
+  .data <- list(unmatched = unmatched, common = .data[is_matched == TRUE])
   if (nrow(.data$unmatched)) setkey(.data$unmatched, table)
-  .data[c("a", "b")] <- NULL
   .data
 }
 
