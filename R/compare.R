@@ -215,13 +215,14 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
   inject(.data[, a_na := is.na(!!p_a)])
   is_unmatched <- inject(.data[, a_na | is.na(!!p_b)])
   unmatched <- inject(
-    .data[is_unmatched, {
-      .(
+    .data[
+      i = is_unmatched,
+      j = .(
         table = fifelse(a_na, "b", "a"),
         present_ind = fifelse(a_na, !!p_b, !!p_a),
         !!!syms(by_names_out)
       )
-    }]
+    ]
   )
   if (nrow(unmatched)) {
     setnames(unmatched, "present_ind", present_ind)
