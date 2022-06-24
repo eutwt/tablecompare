@@ -138,7 +138,7 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
             fcoalesce(!!val_a != !!val_b, is.na(!!val_a), is.na(!!val_b))
           }
         },
-        j = list(i_a, i_b, val_a = !!val_a, val_b = !!val_b, !!!syms(by_names_out))
+        j = .(i_a, i_b, val_a = !!val_a, val_b = !!val_b, !!!syms(by_names_out))
       ]
     )
   }) %>%
