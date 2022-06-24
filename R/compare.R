@@ -127,21 +127,21 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
   }
   value_diffs <- lapply(to_compare, function(name) {
     cols_comp <- glue("{name}_{c('a', 'b')}")
-    setnames(.data$common, cols_comp, c(".val_a", ".val_b"))
+    val_a <- sym(cols_comp[1])
+    val_b <- sym(cols_comp[2])
 
-    out <- .data$common[
-      i = {
-        if (allow_bothNA) {
-          fcoalesce(.val_a != .val_b, is.na(.val_a) + is.na(.val_b) == 1L)
-        } else {
-          fcoalesce(.val_a != .val_b, is.na(.val_a), is.na(.val_b))
-        }
-      },
-      j = .SD,
-      .SDcols = c("i_a", "i_b", ".val_a", ".val_b", by_names_out)
-    ]
-    setnames(.data$common, c(".val_a", ".val_b"), cols_comp)
-    setnames(out, c(".val_a", ".val_b"), c("val_a", "val_b"))
+    inject(
+      .data$common[
+        i = {
+          if (allow_bothNA) {
+            fcoalesce(!!val_a != !!val_b, is.na(!!val_a) + is.na(!!val_b) == 1L)
+          } else {
+            fcoalesce(!!val_a != !!val_b, is.na(!!val_a), is.na(!!val_b))
+          }
+        },
+        j = list(i_a, i_b, val_a = !!val_a, val_b = !!val_b, !!!syms(by_names_out))
+      ]
+    )
   }) %>%
     setNames(to_compare)
 
