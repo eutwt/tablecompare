@@ -117,7 +117,7 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
     ncol_by_out = ncol_by_out
   )
   rm(.data_a, .data_b)
-  if (is.null(.data$common)) {
+  if (!nrow(.data$common)) {
     abort("No rows found in common. Check data and `by` argument.")
   }
 
