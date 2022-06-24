@@ -126,9 +126,8 @@ tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 
     to_compare <- cols$compare[class_a == class_b, column]
   }
   value_diffs <- lapply(to_compare, function(name) {
-    cols_comp <- glue("{name}_{c('a', 'b')}")
-    val_a <- sym(cols_comp[1])
-    val_b <- sym(cols_comp[2])
+    val_a <- sym(glue("{name}_a"))
+    val_b <- sym(glue("{name}_b"))
 
     inject(
       .data$common[
@@ -214,9 +213,9 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
   p_a <- sym(glue("{present_ind}_a"))
   p_b <- sym(glue("{present_ind}_b"))
   inject(.data[, a_na := is.na(!!p_a)])
-  is_matched <- inject(.data[, !(a_na | is.na(!!p_b))])
+  is_unmatched <- inject(.data[, a_na | is.na(!!p_b)])
   unmatched <- inject(
-    .data[!is_matched, {
+    .data[is_unmatched, {
       .(
         table = fifelse(a_na, "b", "a"),
         present_ind = fifelse(a_na, !!p_b, !!p_a),
@@ -224,11 +223,13 @@ merge_split <- function(.data_a, .data_b, by, present_ind, ncol_by_out = Inf) {
       )
     }]
   )
-  setnames(unmatched, "present_ind", present_ind)
+  if (nrow(unmatched)) {
+    setnames(unmatched, "present_ind", present_ind)
+    setkey(unmatched, table)
+  }
   set(.data, j = 'a_na', value = NULL)
-  .data <- list(unmatched = unmatched, common = .data[is_matched == TRUE])
-  if (nrow(.data$unmatched)) setkey(.data$unmatched, table)
-  .data
+
+  list(unmatched = unmatched, common = .data[!is_unmatched])
 }
 
 suffix <- function(x, suffix, exclude = character()) {
