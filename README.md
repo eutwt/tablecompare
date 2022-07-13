@@ -8,6 +8,8 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/tablecompare)](https://CRAN.R-project.org/package=tablecompare)
 [![R-CMD-check](https://github.com/eutwt/tablecompare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/eutwt/tablecompare/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 ### Defining features:
@@ -78,16 +80,20 @@ Use `tblcompare()` to see
 comp <- tblcompare(df_a, df_b, by = car)
 comp
 #> $tables
-#>    table name ncol nrow
-#> 1:     a df_a    9    9
-#> 2:     b df_b    9   10
+#>     table   name  ncol  nrow
+#>    <char> <char> <int> <int>
+#> 1:      a   df_a     9     9
+#> 2:      b   df_b     9    10
 #> 
 #> $by
 #>    column   class_a   class_b
+#>    <char>    <char>    <char>
 #> 1:    car character character
 #> 
 #> $summ
+#> Key: <column>
 #>    column n_diffs class_a class_b       value_diffs
+#>    <char>   <int>  <char>  <char>            <list>
 #> 1:    cyl       0 integer integer <data.table[0x5]>
 #> 2:   disp       2 numeric numeric <data.table[2x5]>
 #> 3:   drat       0 numeric numeric <data.table[0x5]>
@@ -97,15 +103,19 @@ comp
 #> 7:     wt       0 numeric numeric <data.table[0x5]>
 #> 
 #> $unmatched_cols
-#>    table column   class
-#> 1:     a     am integer
-#> 2:     b   carb integer
+#> Key: <table>
+#>     table column   class
+#>    <char> <char>  <char>
+#> 1:      a     am integer
+#> 2:      b   carb integer
 #> 
 #> $unmatched_rows
-#>    table i        car
-#> 1:     a 7  Mazda RX4
-#> 2:     b 5  Merc 280C
-#> 3:     b 8 Merc 450SE
+#> Key: <table>
+#>     table     i        car
+#>    <char> <int>     <char>
+#> 1:      a     7  Mazda RX4
+#> 2:      b     5  Merc 280C
+#> 3:      b     8 Merc 450SE
 #> 
 #> attr(,"class")
 #> [1] "tbcmp_compare"
@@ -118,13 +128,17 @@ Use `value_diffs()` to see the specific values that are different.
 
 ``` r
 value_diffs(comp, disp)
-#>    i_a i_b val_a val_b            car
-#> 1:   4   4   109   108     Datsun 710
-#> 2:   6   7   259   258 Hornet 4 Drive
+#> Key: <car>
+#>      i_a   i_b val_a val_b            car
+#>    <int> <int> <num> <num>         <char>
+#> 1:     4     4   109   108     Datsun 710
+#> 2:     6     7   259   258 Hornet 4 Drive
 value_diffs(comp, mpg)
-#>    i_a i_b val_a val_b        car
-#> 1:   1   3  14.3  16.3 Duster 360
-#> 2:   5   1  24.4  26.4  Merc 240D
+#> Key: <car>
+#>      i_a   i_b val_a val_b        car
+#>    <int> <int> <num> <num>     <char>
+#> 1:     1     3  14.3  16.3 Duster 360
+#> 2:     5     1  24.4  26.4  Merc 240D
 ```
 
 Use `all_value_diffs()` to combine all `value_diffs()` output into one
@@ -134,9 +148,11 @@ table
 
 ``` r
 all_value_diffs(comp)
-#>    column i_a i_b val_a val_b            car
-#> 1:   disp   4   4   109   108     Datsun 710
-#> 2:   disp   6   7   259   258 Hornet 4 Drive
-#> 3:    mpg   1   3  14.3  16.3     Duster 360
-#> 4:    mpg   5   1  24.4  26.4      Merc 240D
+#> Key: <column>
+#>    column   i_a   i_b  val_a  val_b            car
+#>    <char> <int> <int> <char> <char>         <char>
+#> 1:   disp     4     4    109    108     Datsun 710
+#> 2:   disp     6     7    259    258 Hornet 4 Drive
+#> 3:    mpg     1     3   14.3   16.3     Duster 360
+#> 4:    mpg     5     1   24.4   26.4      Merc 240D
 ```
