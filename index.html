@@ -92,44 +92,44 @@
 </h2>
 <p>Install the released version from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tablecompare"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tablecompare"</span><span class="op">)</span></span></code></pre></div>
 <p>Or install the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"eutwt/tablecompare"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"eutwt/tablecompare"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://eutwt.github.io/tablecompare/">tablecompare</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span>
-
-<span class="va">df_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">'
-           car,  mpg, cyl,  disp,  hp, drat,    wt, vs, am
-    Duster 360, 14.3,   8, 360.0, 245, 3.21, 3.570,  0,  0
- Mazda RX4 Wag, 21.0,   6, 160.0, 110, 3.90, 2.875,  0,  1
-      Merc 230, 22.8,   4, 140.8,  95, 3.92, 3.150,  1,  0
-    Datsun 710, 22.8,  NA, 109.0,  93, 3.85, 2.320,  1,  1
-     Merc 240D, 24.4,   4, 146.7,  62, 3.69, 3.190,  1,  0
-Hornet 4 Drive, 21.4,   6, 259.0, 110, 3.08, 3.215,  1,  0
-     Mazda RX4, 21.0,   6, 160.0, 110, 3.90, 2.620,  0,  1
-       Valiant, 18.1,   6, 225.0, 105, 2.76, 3.460,  1,  0
-      Merc 280, 19.2,   6, 167.6, 123, 3.92, 3.440,  1,  0
-'</span><span class="op">)</span>
-<span class="va">df_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">'
-            car,    wt,  mpg,  hp, cyl,  disp, carb, drat, vs
-      Merc 240D, 3.190, 26.4,  62,   4, 146.7,    2, 3.69,  1
-        Valiant, 3.460, 18.1, 105,   6, 225.0,    1, 2.76,  1
-     Duster 360, 3.570, 16.3, 245,   8, 360.0,    4, 3.21,  0
-     Datsun 710, 2.320, 22.8,  93,  NA, 108.0,    1, 3.85,  1
-      Merc 280C, 3.440, 17.8, 123,   6, 167.6,    4, 3.92,  1
-       Merc 280, 3.440, 19.2, 123,   6, 167.6,    4, 3.92,  1
- Hornet 4 Drive, 3.215, 21.4, 110,   6, 258.0,    1, 3.08,  1
-     Merc 450SE, 4.070, 16.4, 180,   8, 275.8,    3, 3.07,  0
-       Merc 230, 3.150, 22.8,  95,   4, 140.8,    2, 3.92,  1
-  Mazda RX4 Wag, 2.875, 21.0, 110,   6, 160.0,    4, 3.90,  0
-'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://eutwt.github.io/tablecompare/">tablecompare</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">'</span></span>
+<span><span class="st">           car,  mpg, cyl,  disp,  hp, drat,    wt, vs, am</span></span>
+<span><span class="st">    Duster 360, 14.3,   8, 360.0, 245, 3.21, 3.570,  0,  0</span></span>
+<span><span class="st"> Mazda RX4 Wag, 21.0,   6, 160.0, 110, 3.90, 2.875,  0,  1</span></span>
+<span><span class="st">      Merc 230, 22.8,   4, 140.8,  95, 3.92, 3.150,  1,  0</span></span>
+<span><span class="st">    Datsun 710, 22.8,  NA, 109.0,  93, 3.85, 2.320,  1,  1</span></span>
+<span><span class="st">     Merc 240D, 24.4,   4, 146.7,  62, 3.69, 3.190,  1,  0</span></span>
+<span><span class="st">Hornet 4 Drive, 21.4,   6, 259.0, 110, 3.08, 3.215,  1,  0</span></span>
+<span><span class="st">     Mazda RX4, 21.0,   6, 160.0, 110, 3.90, 2.620,  0,  1</span></span>
+<span><span class="st">       Valiant, 18.1,   6, 225.0, 105, 2.76, 3.460,  1,  0</span></span>
+<span><span class="st">      Merc 280, 19.2,   6, 167.6, 123, 3.92, 3.440,  1,  0</span></span>
+<span><span class="st">'</span><span class="op">)</span></span>
+<span><span class="va">df_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">'</span></span>
+<span><span class="st">            car,    wt,  mpg,  hp, cyl,  disp, carb, drat, vs</span></span>
+<span><span class="st">      Merc 240D, 3.190, 26.4,  62,   4, 146.7,    2, 3.69,  1</span></span>
+<span><span class="st">        Valiant, 3.460, 18.1, 105,   6, 225.0,    1, 2.76,  1</span></span>
+<span><span class="st">     Duster 360, 3.570, 16.3, 245,   8, 360.0,    4, 3.21,  0</span></span>
+<span><span class="st">     Datsun 710, 2.320, 22.8,  93,  NA, 108.0,    1, 3.85,  1</span></span>
+<span><span class="st">      Merc 280C, 3.440, 17.8, 123,   6, 167.6,    4, 3.92,  1</span></span>
+<span><span class="st">       Merc 280, 3.440, 19.2, 123,   6, 167.6,    4, 3.92,  1</span></span>
+<span><span class="st"> Hornet 4 Drive, 3.215, 21.4, 110,   6, 258.0,    1, 3.08,  1</span></span>
+<span><span class="st">     Merc 450SE, 4.070, 16.4, 180,   8, 275.8,    3, 3.07,  0</span></span>
+<span><span class="st">       Merc 230, 3.150, 22.8,  95,   4, 140.8,    2, 3.92,  1</span></span>
+<span><span class="st">  Mazda RX4 Wag, 2.875, 21.0, 110,   6, 160.0,    4, 3.90,  0</span></span>
+<span><span class="st">'</span><span class="op">)</span></span></code></pre></div>
 <p>Use <code><a href="reference/tblcompare.html">tblcompare()</a></code> to see</p>
 <ul>
 <li>The number of differing values in each column - <code>tblcompare()$summ</code>
@@ -140,61 +140,61 @@ Hornet 4 Drive, 21.4,   6, 259.0, 110, 3.08, 3.215,  1,  0
 </li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tblcompare.html">tblcompare</a></span><span class="op">(</span><span class="va">df_a</span>, <span class="va">df_b</span>, by <span class="op">=</span> <span class="va">car</span><span class="op">)</span>
-<span class="va">comp</span>
-<span class="co">#&gt; $tables</span>
-<span class="co">#&gt;    table name ncol nrow</span>
-<span class="co">#&gt; 1:     a df_a    9    9</span>
-<span class="co">#&gt; 2:     b df_b    9   10</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $by</span>
-<span class="co">#&gt;    column   class_a   class_b</span>
-<span class="co">#&gt; 1:    car character character</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $summ</span>
-<span class="co">#&gt;    column n_diffs class_a class_b       value_diffs</span>
-<span class="co">#&gt; 1:    cyl       0 integer integer &lt;data.table[0x5]&gt;</span>
-<span class="co">#&gt; 2:   disp       2 numeric numeric &lt;data.table[2x5]&gt;</span>
-<span class="co">#&gt; 3:   drat       0 numeric numeric &lt;data.table[0x5]&gt;</span>
-<span class="co">#&gt; 4:     hp       0 integer integer &lt;data.table[0x5]&gt;</span>
-<span class="co">#&gt; 5:    mpg       2 numeric numeric &lt;data.table[2x5]&gt;</span>
-<span class="co">#&gt; 6:     vs       0 integer integer &lt;data.table[0x5]&gt;</span>
-<span class="co">#&gt; 7:     wt       0 numeric numeric &lt;data.table[0x5]&gt;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $unmatched_cols</span>
-<span class="co">#&gt;    table column   class</span>
-<span class="co">#&gt; 1:     a     am integer</span>
-<span class="co">#&gt; 2:     b   carb integer</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $unmatched_rows</span>
-<span class="co">#&gt;    table i        car</span>
-<span class="co">#&gt; 1:     a 7  Mazda RX4</span>
-<span class="co">#&gt; 2:     b 5  Merc 280C</span>
-<span class="co">#&gt; 3:     b 8 Merc 450SE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "tbcmp_compare"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tblcompare.html">tblcompare</a></span><span class="op">(</span><span class="va">df_a</span>, <span class="va">df_b</span>, by <span class="op">=</span> <span class="va">car</span><span class="op">)</span></span>
+<span><span class="va">comp</span></span>
+<span><span class="co">#&gt; $tables</span></span>
+<span><span class="co">#&gt;    table name ncol nrow</span></span>
+<span><span class="co">#&gt; 1:     a df_a    9    9</span></span>
+<span><span class="co">#&gt; 2:     b df_b    9   10</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $by</span></span>
+<span><span class="co">#&gt;    column   class_a   class_b</span></span>
+<span><span class="co">#&gt; 1:    car character character</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $summ</span></span>
+<span><span class="co">#&gt;    column n_diffs class_a class_b       value_diffs</span></span>
+<span><span class="co">#&gt; 1:    cyl       0 integer integer &lt;data.table[0x5]&gt;</span></span>
+<span><span class="co">#&gt; 2:   disp       2 numeric numeric &lt;data.table[2x5]&gt;</span></span>
+<span><span class="co">#&gt; 3:   drat       0 numeric numeric &lt;data.table[0x5]&gt;</span></span>
+<span><span class="co">#&gt; 4:     hp       0 integer integer &lt;data.table[0x5]&gt;</span></span>
+<span><span class="co">#&gt; 5:    mpg       2 numeric numeric &lt;data.table[2x5]&gt;</span></span>
+<span><span class="co">#&gt; 6:     vs       0 integer integer &lt;data.table[0x5]&gt;</span></span>
+<span><span class="co">#&gt; 7:     wt       0 numeric numeric &lt;data.table[0x5]&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $unmatched_cols</span></span>
+<span><span class="co">#&gt;    table column   class</span></span>
+<span><span class="co">#&gt; 1:     a     am integer</span></span>
+<span><span class="co">#&gt; 2:     b   carb integer</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $unmatched_rows</span></span>
+<span><span class="co">#&gt;    table i        car</span></span>
+<span><span class="co">#&gt; 1:     a 7  Mazda RX4</span></span>
+<span><span class="co">#&gt; 2:     b 5  Merc 280C</span></span>
+<span><span class="co">#&gt; 3:     b 8 Merc 450SE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; attr(,"class")</span></span>
+<span><span class="co">#&gt; [1] "tbcmp_compare"</span></span></code></pre></div>
 <p>Use <code><a href="reference/tblcompare.html">value_diffs()</a></code> to see the specific values that are different.</p>
 <ul><li>The row numbers <code>i_a</code> and <code>i_b</code> allow for easy subsetting of the original tables using the <code><a href="reference/tblcompare.html">value_diffs()</a></code> output.</li></ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/tblcompare.html">value_diffs</a></span><span class="op">(</span><span class="va">comp</span>, <span class="va">disp</span><span class="op">)</span>
-<span class="co">#&gt;    i_a i_b val_a val_b            car</span>
-<span class="co">#&gt; 1:   4   4   109   108     Datsun 710</span>
-<span class="co">#&gt; 2:   6   7   259   258 Hornet 4 Drive</span>
-<span class="fu"><a href="reference/tblcompare.html">value_diffs</a></span><span class="op">(</span><span class="va">comp</span>, <span class="va">mpg</span><span class="op">)</span>
-<span class="co">#&gt;    i_a i_b val_a val_b        car</span>
-<span class="co">#&gt; 1:   1   3  14.3  16.3 Duster 360</span>
-<span class="co">#&gt; 2:   5   1  24.4  26.4  Merc 240D</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/tblcompare.html">value_diffs</a></span><span class="op">(</span><span class="va">comp</span>, <span class="va">disp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    i_a i_b val_a val_b            car</span></span>
+<span><span class="co">#&gt; 1:   4   4   109   108     Datsun 710</span></span>
+<span><span class="co">#&gt; 2:   6   7   259   258 Hornet 4 Drive</span></span>
+<span><span class="fu"><a href="reference/tblcompare.html">value_diffs</a></span><span class="op">(</span><span class="va">comp</span>, <span class="va">mpg</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    i_a i_b val_a val_b        car</span></span>
+<span><span class="co">#&gt; 1:   1   3  14.3  16.3 Duster 360</span></span>
+<span><span class="co">#&gt; 2:   5   1  24.4  26.4  Merc 240D</span></span></code></pre></div>
 <p>Use <code><a href="reference/tblcompare.html">all_value_diffs()</a></code> to combine all <code><a href="reference/tblcompare.html">value_diffs()</a></code> output into one table</p>
 <ul><li>
 <code>val_a</code> and <code>val_b</code> are coerced to character</li></ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/tblcompare.html">all_value_diffs</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span>
-<span class="co">#&gt;    column i_a i_b val_a val_b            car</span>
-<span class="co">#&gt; 1:   disp   4   4   109   108     Datsun 710</span>
-<span class="co">#&gt; 2:   disp   6   7   259   258 Hornet 4 Drive</span>
-<span class="co">#&gt; 3:    mpg   1   3  14.3  16.3     Duster 360</span>
-<span class="co">#&gt; 4:    mpg   5   1  24.4  26.4      Merc 240D</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/tblcompare.html">all_value_diffs</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    column i_a i_b val_a val_b            car</span></span>
+<span><span class="co">#&gt; 1:   disp   4   4   109   108     Datsun 710</span></span>
+<span><span class="co">#&gt; 2:   disp   6   7   259   258 Hornet 4 Drive</span></span>
+<span><span class="co">#&gt; 3:    mpg   1   3  14.3  16.3     Duster 360</span></span>
+<span><span class="co">#&gt; 4:    mpg   5   1  24.4  26.4      Merc 240D</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
