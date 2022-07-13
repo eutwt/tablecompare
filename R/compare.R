@@ -169,6 +169,7 @@ value_diffs <- function(comparison, col){
   UseMethod("value_diffs")
 }
 
+#' @export
 value_diffs.tbcmp_compare <- function(comparison, col) {
   col_nm <- name_select(enquo(col), simulate_df(comparison$summ$column))
   if (length(col_nm) != 1) {
@@ -183,6 +184,7 @@ all_value_diffs <- function(comparison) {
   UseMethod("all_value_diffs")
 }
 
+#' @export
 all_value_diffs.tbcmp_compare <- function(comparison) {
   val_cols <- c("val_a", "val_b")
   comparison$summ[n_diffs > 0,
