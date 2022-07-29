@@ -57,9 +57,7 @@ combination of <code>by</code> variable values</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">count_dupes</span><span class="op">(</span><span class="va">.data</span>, by <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, setkey <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">assert_unique</span><span class="op">(</span><span class="va">.data</span>, by <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, <span class="va">data_chr</span>, call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">count_dupes</span><span class="op">(</span><span class="va">.data</span>, by <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, setkey <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -75,34 +73,15 @@ combination of <code>by</code> variable values</p>
 <dt>setkey</dt>
 <dd><p>Logical. Should the output be keyed by <code>by</code> cols?</p></dd>
 
-
-<dt>data_chr</dt>
-<dd><p>optional. character. You can use this argument to manually specify
-the name of <code>data</code> shown in error messages. Useful when using these functions
-as checks inside other functions.</p></dd>
-
-
-<dt>call</dt>
-<dd><p>optional. An execution environment passed to rlang::abort on error</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<dl><dt><code>count_dupes()</code></dt>
-<dd><p>A <code>data.table</code> with the (filtered) <code>by</code>
-columns and an additional column "n_rows" which shows the number of rows in
-<code>.data</code> having the combination of <code>by</code> values shown in the output
-row.</p></dd>
-
-
-<dt><code>assert_unique()</code></dt>
-<dd><p>No return value. Called to throw an
-error depending on the input.</p></dd>
-
-
-</dl></div>
+<p>A <code>data.table</code> with the (filtered) <code>by</code> columns and an additional
+column "n_rows" which shows the number of rows in <code>.data</code> having the
+combination of <code>by</code> values shown in the output row.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
