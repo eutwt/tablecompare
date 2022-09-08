@@ -87,10 +87,8 @@ with differing/same values in one of the supplied cols.</p></dd>
 
 <p><code>slice_diffs()</code> returns a <code>data.table</code> with rows from the comparison
 table <code>.data_a</code> having values different from <code>.data_b</code>, followed by
-the corresponding row in <code>.data_b</code>, i.e. all rows from <code>slice_diffs_a()</code></p>
-
-
-<p>and <code>slice_diffs_b()</code> interleaved.</p>
+the corresponding row in <code>.data_b</code>. Only columns contained in both tables
+are included.</p>
 
 
 <p><code>slice_diffs_a()</code> returns a <code>data.table</code> with rows from the comparison
