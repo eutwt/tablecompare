@@ -101,5 +101,14 @@ utils::globalVariables(c(
   "n_rows",
   "n_values",
   "n_vals",
-  "."
+  ".",
+  "nested_dt_pull",
+  "row_diff",
+  "col_diff",
+  "row_nomatch",
+  "col_nomatch",
+  "col_diff",
+  "i_a",
+  "name",
+  "rep_named"
 ))

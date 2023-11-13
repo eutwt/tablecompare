@@ -2,7 +2,11 @@
 #' @keywords internal
 #'
 #' @import data.table
-#' @import rlang
+#' @importFrom rlang enquo
+#' @importFrom rlang enexpr
+#' @importFrom rlang abort
+#' @importFrom rlang ensym
+#' @importFrom rlang inject
 #' @importFrom tidyselect eval_select
 #' @importFrom glue glue
 #' @importFrom glue glue_collapse
