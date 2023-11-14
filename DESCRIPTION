@@ -4,9 +4,7 @@ Title: Compare Data Frames
 Version: 0.1.1
 Authors@R: 
     person("Ryan", "Dickerson", , "fresh.tent5866@fastmail.com", role = c("aut", "cre"))
-Description: A toolbox for comparing two data frames with the aim of quick and 
-  simple functionality. Note that this package is no longer maintained, and has been
-  replaced with the "versus" package.
+Description: A toolbox for comparing two data frames. This package is defunct. I recommend you use the "versus" package instead.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

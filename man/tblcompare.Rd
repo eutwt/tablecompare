@@ -3,7 +3,9 @@
 \name{tblcompare}
 \alias{tblcompare}
 \alias{value_diffs}
+\alias{value_diffs.tbcmp_compare}
 \alias{all_value_diffs}
+\alias{all_value_diffs.tbcmp_compare}
 \title{Compare two data frames. Using a key-column common to both tables, see which
 rows are common and highlight differing values by column.}
 \usage{
@@ -18,7 +20,11 @@ tblcompare(
 
 value_diffs(comparison, col)
 
+\method{value_diffs}{tbcmp_compare}(comparison, col)
+
 all_value_diffs(comparison)
+
+\method{all_value_diffs}{tbcmp_compare}(comparison)
 }
 \arguments{
 \item{.data_a}{A data frame or data table}

@@ -69,6 +69,7 @@
 #' @export
 tblcompare <- function(.data_a, .data_b, by, allow_bothNA = TRUE, ncol_by_out = 3,
                        coerce = TRUE) {
+  inform(c(i = "This package is defunct. Please use the {versus} package instead"))
   if (missing(by)) {
     abort("Argument `by` cannot be missing")
   }
@@ -168,6 +169,8 @@ value_diffs <- function(comparison, col){
   UseMethod("value_diffs")
 }
 
+#' @rdname tblcompare
+#' @export
 value_diffs.tbcmp_compare <- function(comparison, col) {
   col_nm <- name_select(enquo(col), simulate_df(comparison$summ$column))
   if (length(col_nm) != 1) {
@@ -182,6 +185,8 @@ all_value_diffs <- function(comparison) {
   UseMethod("all_value_diffs")
 }
 
+#' @rdname tblcompare
+#' @export
 all_value_diffs.tbcmp_compare <- function(comparison) {
   val_cols <- c("val_a", "val_b")
   comparison$summ[n_diffs > 0,

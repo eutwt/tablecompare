@@ -7,6 +7,7 @@
 #' @importFrom rlang abort
 #' @importFrom rlang ensym
 #' @importFrom rlang inject
+#' @importFrom rlang inform
 #' @importFrom tidyselect eval_select
 #' @importFrom glue glue
 #' @importFrom glue glue_collapse
